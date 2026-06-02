@@ -1,0 +1,24 @@
+---
+import "../global.css";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import BestilPopup from "./BestilPopup.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <BestilPopup />
+  </body>
+</html>

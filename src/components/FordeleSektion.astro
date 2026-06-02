@@ -1,0 +1,233 @@
+---
+const fordele = [
+  {
+    titel: "Det koster dig ikke noget",
+    beskrivelse: "Ingen årsgebyr, ingen transaktionsgebyr, ingen skjulte omkostninger. Det er faktisk ret sjældent — både i Danmark og resten af verden."
+  },
+  {
+    titel: "Din lokale butik foretrækker Dankort",
+    beskrivelse: "Dankort er det billigste kort for butikkerne at modtage. Når du betaler med Dankort, beholder din lokale butik flere penge frem for at sende dem til et hovedkontor i udlandet."
+  },
+  {
+    titel: "Du gør noget godt uden at gøre noget",
+    beskrivelse: "Hver gang du betaler med Dankort, donerer Dankort 1 øre til dansk natur. Ikke dine penge — Dankorts egne. Du behøver ikke tilmelde dig noget eller tænke over det."
+  },
+  {
+    titel: "Det er det mest brugte betalingskort i Danmark",
+    beskrivelse: "Dankort virker overalt i Danmark — i alle butikker, alle supermarkeder og alle kiosker. Det er bygget til det danske marked og har gjort det i årtier."
+  },
+  {
+    titel: "Pengene bliver i Danmark",
+    beskrivelse: "Når du betaler med Visa eller Mastercard, går en del af gebyret til internationale selskaber. Med Dankort forbliver pengene i dansk infrastruktur."
+  },
+  {
+    titel: "Du er beskyttet af dansk lovgivning",
+    beskrivelse: "Dankort er reguleret af dansk lov. Det betyder at priserne er kontrollerede af Konkurrencestyrelsen og at du som forbruger har stærke rettigheder hvis noget går galt."
+  },
+  {
+    titel: "Nogen andre donerer også når du handler",
+    beskrivelse: "Bruger du Dankort i en partnerbutik eller har kort fra en partnerbank, donerer de også en øre oveni. Én betaling kan blive til tre øre — stadig gratis for dig."
+  },
+  {
+    titel: "Du støtter natur du selv kan besøge",
+    beskrivelse: "Naturfondens områder er åbne for alle. Det er ikke natur bag et hegn — det er steder du kan gå en tur, tage en svømmetur eller bare sidde og kigge ud over."
+  },
+  {
+    titel: "Det er nemt at få fat på",
+    beskrivelse: "Du bestiller Dankort gennem din bank — de fleste banker tilbyder det som en del af din konto. Ingen særlig ansøgning, ingen ventetid."
+  },
+  {
+    titel: "Du er en del af noget større",
+    beskrivelse: "Bag hvert naturområde Dankort Øremærket har støttet ligger millioner af helt almindelige betalinger fra helt almindelige danskere. Det er ikke en stor gest — det er mange små. Og tilsammen er de noget ret særligt."
+  }
+];
+---
+
+<section class="fordele">
+  <h2>Derfor giver det mening. Klik og se alle fordelene</h2>
+
+  <div class="karrusel-wrapper">
+    <div class="karrusel" id="fordele-karrusel">
+      {fordele.map((item, i) => (
+        <div class="card" data-index={i}>
+          <div class="card-indre">
+            <div class="forside">
+              <p>{item.titel}</p>
+            </div>
+            <div class="bagside">
+              <p>{item.beskrivelse}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="prikker" id="fordele-prikker">
+      {fordele.map((_, i) => (
+        <button class="prik" data-index={i} aria-label={`Gå til fordel ${i + 1}`}></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .fordele {
+    margin-top: 3rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .karrusel-wrapper {
+    background-color: #FFD998;
+    padding: 2rem 0 1.5rem;
+  }
+
+  .karrusel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 1rem 1.5rem;
+  }
+
+  .karrusel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    scroll-snap-align: center;
+    flex: 0 0 75vw;
+    max-width: 280px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .card-indre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card.aaben .card-indre {
+    transform: rotateY(180deg);
+  }
+
+  .forside,
+  .bagside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #FFE8B6;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .forside p {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .bagside {
+    transform: rotateY(180deg);
+  }
+
+  .bagside p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .prikker {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .prik {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #FFE8B6;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .prik.aktiv {
+    background-color: #c47f00;
+    transform: scale(1.3);
+  }
+
+  @media (min-width: 1024px) {
+    .fordele {
+      margin-top: 5rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+    }
+
+    .card {
+      flex: 0 0 220px;
+      max-width: 220px;
+      height: 280px;
+    }
+  }
+</style>
+
+<script>
+  const karrusel = document.getElementById('fordele-karrusel') as HTMLElement;
+  const prikker = document.querySelectorAll('#fordele-prikker .prik');
+  const cards = karrusel.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('aaben');
+    });
+  });
+
+  prikker.forEach((prik, i) => {
+    prik.addEventListener('click', () => {
+      const card = cards[i] as HTMLElement;
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  });
+
+  const opdaterPrik = () => {
+    const midt = karrusel.scrollLeft + karrusel.offsetWidth / 2;
+    let aktivIndex = 0;
+    cards.forEach((card, i) => {
+      const el = card as HTMLElement;
+      const kortMidt = el.offsetLeft + el.offsetWidth / 2;
+      if (Math.abs(kortMidt - midt) < Math.abs((cards[aktivIndex] as HTMLElement).offsetLeft + (cards[aktivIndex] as HTMLElement).offsetWidth / 2 - midt)) {
+        aktivIndex = i;
+      }
+    });
+    prikker.forEach((p, i) => {
+      p.classList.toggle('aktiv', i === aktivIndex);
+    });
+  };
+
+  karrusel.addEventListener('scroll', opdaterPrik);
+  opdaterPrik();
+</script>

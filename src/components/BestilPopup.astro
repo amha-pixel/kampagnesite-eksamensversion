@@ -1,0 +1,175 @@
+---
+---
+
+<div class="popup-overlay" id="popup">
+  <div class="popup-indhold">
+    <h2>Tjek om du betaler med Dankort.<br />Kig efter DK logoet.</h2>
+
+    <img src="/images/ui/dankort-icon.svg" alt="Dankort" class="kort-billede" />
+
+    <p>Alle betalinger med Dankort udløser donationer til Den Danske Naturfond – uanset om du betaler med kort, mobilen eller på nettet. Men betaler du egentlig med Dankort? Tjek dit fysiske kort og din wallet på mobilen, og kig efter Dankort logoet.</p>
+
+    <h3>Så nemt er det at bestille Dankort i din bank.</h3>
+
+    <ol>
+      <li>Vælg din bank i oversigten</li>
+      <li>Du viderestilles til din banks hjemmeside</li>
+      <li>Log på selvbetjeningen</li>
+      <li>Bestil dankort hos din bank</li>
+    </ol>
+
+    <div class="bank-dropdown">
+      <button class="bank-knap" id="bank-knap">Find din bank</button>
+      <ul class="bank-liste" id="bank-liste">
+        <li><a href="#">Arbejdernes Landsbank</a></li>
+        <li><a href="#">Bankdata</a></li>
+        <li><a href="#">Coop Bank</a></li>
+        <li><a href="#">Danske Bank</a></li>
+        <li><a href="#">Den Jyske Sparekasse</a></li>
+        <li><a href="#">Djurslands Bank</a></li>
+        <li><a href="#">Fynske Bank</a></li>
+        <li><a href="#">Handelsbanken</a></li>
+        <li><a href="#">Jutlander Bank</a></li>
+        <li><a href="#">Jyske Bank</a></li>
+        <li><a href="#">Kreditbanken</a></li>
+        <li><a href="#">Lån & Spar Bank</a></li>
+        <li><a href="#">Middelfart Sparekasse</a></li>
+        <li><a href="#">Møns Bank</a></li>
+        <li><a href="#">Nordea</a></li>
+        <li><a href="#">Nordfyns Bank</a></li>
+        <li><a href="#">Nykredit Bank</a></li>
+        <li><a href="#">Pengeinstituternes Betalingssystemer</a></li>
+        <li><a href="#">Ringkjøbing Landbobank</a></li>
+        <li><a href="#">Saxo Bank</a></li>
+        <li><a href="#">Spar Nord Bank</a></li>
+        <li><a href="#">Sparekassen Balling</a></li>
+        <li><a href="#">Sparekassen Danmark</a></li>
+        <li><a href="#">Sparekassen Djursland</a></li>
+        <li><a href="#">Sparekassen Kronjylland</a></li>
+        <li><a href="#">Sparekassen Sjælland-Fyn</a></li>
+        <li><a href="#">Sparekassen Thy</a></li>
+        <li><a href="#">Sydbank</a></li>
+        <li><a href="#">Totalbanken</a></li>
+        <li><a href="#">Vestjysk Bank</a></li>
+      </ul>
+    </div>
+
+    <button class="tilbage-knap" id="luk-popup">Tilbage</button>
+  </div>
+</div>
+
+<style>
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--hvid);
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .popup-overlay.aaben {
+    display: block;
+  }
+
+  .popup-indhold {
+    padding: 2rem 1rem 4rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .kort-billede {
+    width: 80%;
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  ol {
+    padding-left: 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 2;
+  }
+
+  .bank-dropdown {
+    margin-bottom: 2rem;
+  }
+
+  .bank-knap {
+    width: auto;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--sort);
+    border-radius: 999px;
+    background: transparent;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .bank-liste {
+    display: none;
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .bank-liste.aaben {
+    display: block;
+  }
+
+  .bank-liste li a {
+    display: block;
+    padding: 0.4rem 0;
+    font-weight: 800;
+    color: var(--sort);
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--lysest-graa);
+  }
+
+  .tilbage-knap {
+    position: static;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--sort);
+  }
+</style>
+
+<script>
+  const bankKnap = document.getElementById('bank-knap');
+  const bankListe = document.getElementById('bank-liste');
+
+  bankKnap?.addEventListener('click', () => {
+    bankListe?.classList.toggle('aaben');
+  });
+
+  const lukKnap = document.getElementById('luk-popup');
+  lukKnap?.addEventListener('click', () => {
+    document.getElementById('popup')?.classList.remove('aaben');
+  });

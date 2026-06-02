@@ -1,0 +1,122 @@
+---
+
+---
+
+<footer>
+  <img src="/images/ui/dankort-logo.svg" alt="Dankort" class="footer-logo" />
+
+  <div class="footer-kolonner">
+    <div class="footer-kolonne">
+      <h3>Dankort</h3>
+      <a href="#">Om Dankort</a>
+      <a href="#">Presse</a>
+    </div>
+
+    <div class="footer-kolonne">
+      <h3>Support</h3>
+      <a href="#">Kontakt salg</a>
+      <a href="#">Kontakt kundeservice</a>
+      <a href="#">Support erhverv</a>
+      <a href="#">Support privat</a>
+    </div>
+
+    <div class="footer-kolonne">
+      <h3>Politikker</h3>
+      <a href="#">Privatlivspolitikker</a>
+      <a href="#">Cookies</a>
+      <a href="#">AEE regulativ</a>
+    </div>
+
+    <div class="footer-sociale">
+      <h3>Find os på sociale medier</h3>
+      <div class="sociale-medier">
+        <a href="#" aria-label="TikTok">
+          <img src="/images/ui/icon-tiktok.svg" alt="" />
+        </a>
+        <a href="#" aria-label="Instagram">
+          <img src="/images/ui/icon-instagram.svg" alt="" />
+        </a>
+        <a href="#" aria-label="Facebook">
+          <img src="/images/ui/icon-facebook.svg" alt="" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-color: var(--solsikkegul-lys);
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-kolonner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .footer-kolonne h3,
+  .footer-sociale h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-kolonne a {
+    display: block;
+    color: var(--sort);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .sociale-medier {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .sociale-medier img {
+    height: 36px;
+    width: 36px;
+  }
+
+  @media (min-width: 1024px) {
+    footer {
+      padding: 2rem 3rem;
+    }
+
+    .footer-logo {
+      height: 80px;
+      margin-bottom: 2rem;
+    }
+
+    .footer-kolonner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .footer-kolonne h3,
+    .footer-sociale h3 {
+      font-size: 1.1rem;
+    }
+
+    .sociale-medier img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+</style>

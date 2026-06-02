@@ -1,0 +1,54 @@
+---
+const { titel, indhold } = Astro.props;
+---
+
+<details>
+  <summary>{titel}</summary>
+  <p>{indhold}</p>
+</details>
+
+<style>
+  details {
+    border-radius: 999px;
+    overflow: visible;
+  }
+
+  summary {
+    background-color: rgba(161, 234, 172, 0.2);
+    color: var(--limegroen-mork);
+    border: 2px solid var(--limegroen-lys);
+    padding: 0.6rem 1.25rem;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    list-style: none;
+    border-radius: 999px;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] summary {
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: none;
+  }
+
+  details[open] {
+    border: 2px solid var(--limegroen-lys);
+    border-radius: 1rem;
+  }
+
+  details p {
+    color: var(--sort);
+    padding: 0.75rem 1.25rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  details[open] {
+  border: 2px solid var(--limegroen-lys);
+  border-radius: 1rem;
+  background-color: rgba(161, 234, 172, 0.2);
+}
+</style>

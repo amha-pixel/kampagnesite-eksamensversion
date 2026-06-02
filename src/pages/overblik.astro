@@ -1,0 +1,31 @@
+---
+import Layout from "../components/Layout.astro";
+import KortSektion from "../components/KortSektion.astro";
+import InfoSektion from "../components/InfoSektion.astro";
+import CitatSektion from "../components/CitatSektion.astro";
+import VaerdiFilter from "../components/VaerdiFilter.astro";
+import VaerdiSektion from "../components/VaerdiSektion.astro";
+import FordeleSektion from "../components/FordeleSektion.astro";
+---
+
+<Layout title="Dankort Øremærket – Overblik">
+  <KortSektion />
+  <InfoSektion />
+  <CitatSektion />
+  <div style="padding: 0 20px;">
+    <h2>Hvilke værdier har Dankort <span class="display">Øremærket</span> egentlig?</h2>
+    <VaerdiFilter />
+  </div>
+  <VaerdiSektion />
+  <FordeleSektion />
+</Layout>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash;
+    if (hash) {
+      document.querySelectorAll(".vaerdi-sektion").forEach((s) => s.classList.add("skjult"));
+      document.querySelector(hash)?.classList.remove("skjult");
+    }
+  });
+</script>

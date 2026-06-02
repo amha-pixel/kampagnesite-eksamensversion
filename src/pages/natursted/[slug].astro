@@ -1,0 +1,215 @@
+---
+import Layout from "../../components/Layout.astro";
+import Accordeon from "../../components/Accordeon.astro";
+import { supabase } from "../../lib/supabase.js";
+
+export async function getStaticPaths() {
+  const { data, error } = await supabase.from("natursteder").select("slug");
+
+  if (error) {
+    console.log(error);
+    return [];
+  }
+
+  return data.map((natursted) => ({
+    params: { slug: natursted.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const { data, error } = await supabase.from("natursteder").select("*").eq("slug", slug).single();
+---
+
+<Layout title={data.titel}>
+
+  <div class="side-grid">
+
+    <div class="venstre">
+      <section class="hero">
+        <h1>{data.titel}</h1>
+        <p class="underrubrik">{data.underrubrik}</p>
+      </section>
+
+      <section class="brodtekst">
+        <p>{data.brodtekst}</p>
+      </section>
+    </div>
+
+    <div class="hoejre">
+      <section class="billede-sektion">
+        <div class="gul-firkant"></div>
+        <img src={data.billede} alt={data.titel} class="naturbillede" />
+      </section>
+
+      <section class="fakta">
+        <h2>Fakta</h2>
+        <p><strong>Natur</strong><br />{data.natur_fakta}</p>
+        <p><strong>Areal</strong><br />{data.areal}</p>
+        <p><strong>Økonomi</strong><br />{data.oekonomi}</p>
+        <p><strong>Partnere</strong><br />{data.partnere}</p>
+      </section>
+    </div>
+
+    <section class="accordeon">
+      <Accordeon titel="Unik natur" indhold={data.unik_natur} />
+      <Accordeon titel="Sådan hjælper vi naturen" indhold={data.dankort_hjaelper} />
+      <Accordeon titel="Naturoplevelser" indhold={data.naturoplevelser} />
+    </section>
+
+    <a href="/overblik" class="tilbage-knap">
+      <img src="/images/ui/pil-tilbage.svg" alt="" />
+    </a>
+  </div>
+
+  </div>
+
+</Layout>
+
+<style>
+  .hero {
+    background-image: url("/images/collage/papirstykke-beige.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: -80px -20px;
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .underrubrik {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .brodtekst {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .billede-sektion {
+    position: relative;
+    margin: 0 1rem 2rem;
+    max-width: 90%;
+  }
+
+  .gul-firkant {
+    position: absolute;
+    top: -35px;
+    right: -30px;
+    width: 80%;
+    height: 80%;
+    background-color: #ffd998;
+    z-index: 0;
+  }
+
+  .naturbillede {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .fakta {
+    background-image: url("/images/collage/papir-fersken.png");
+    background-size: 80%;
+    background-position: -120px -35px;
+    background-repeat: no-repeat;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .fakta h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .fakta p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .accordeon {
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .tilbage-knap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 1rem 3rem;
+    color: var(--sort);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .tilbage-knap img {
+    height: 100px;
+  }
+
+  @media (min-width: 1024px) {
+  .hero {
+    background-image: url("/images/collage/papirstykke-beige.png");
+    background-size: 40%;
+    background-position: -10px -30px;
+    padding: 2rem 0 1rem 0;
+  }
+
+  .brodtekst {
+    padding: 0;
+  }
+
+  .side-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: start;
+  }
+
+  .venstre {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    padding-left: 1rem;
+    padding-top: 2rem;
+  }
+
+  .hoejre {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .accordeon {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .tilbage-knap {
+    grid-column: 1 / 2;
+    grid-row: 3;
+  }
+
+  .gul-firkant {
+    top: 100px;
+    right: -53px;
+  }
+
+  .fakta {
+  background-size: 45%;
+  background-position: -20px -30px;
+}
+}
+</style>

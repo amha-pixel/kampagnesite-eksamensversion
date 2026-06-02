@@ -1,0 +1,300 @@
+---
+// VaerdiSektion.astro
+// Data defineres lokalt som array — ingen fetch, ingen ekstern kilde
+
+const vaerdier = [
+  {
+    slug: "natur",
+    titel: "Når danskere betaler, vokser naturen",
+    tekst:
+      "830.000 kvadratmeter ny vild natur om året. Ikke fordi nogen har doneret en stor check, men fordi danskere millioner af gange har købt dagligvarer, betalt husleje og hentet takeaway med Dankort. Det er det vildeste fællesskabsprojekt Danmark har set i lang tid.",
+    billede: "/images/natursteder/natur-rapsmark.webp",
+    billedeAlt: "Dansk natur",
+  },
+  {
+    slug: "lokalt",
+    titel: "Når du betaler lokalt, betaler du det videre",
+    tekst:
+      "Din lokale butik er ikke ligeglad med hvilket kort du bruger. Dankort er det billigste betalingskort for butikkerne — gebyret er fastsat ved lov og betydeligt lavere end Visa og Mastercard. Bog & idé regnede det engang ud: hvis alle betalte med Dankort ville de spare 1,7 millioner kroner om året i gebyrer. De pengene ender ikke i et pengeskab — de ender i butikkens priser. Så når du swiper med Dankort hos din lokale bager, giver du ham faktisk en lille håndsrækning han aldrig ville bede dig om. Og de butikker der er partnere i Dankort Øremærket, donerer oven i købet en øre til dansk natur hver gang du handler hos dem.",
+    billede: "/images/natursteder/lokalmiljoe-landsby.webp",
+    billedeAlt: "Lokalt dansk miljø",
+  },
+  {
+    slug: "socialt",
+    titel: "DK's sociale betalingsfællesskab",
+    tekst:
+      "De fedeste ting sker ikke fordi én person beslutter det. De sker fordi alle gør det. Dankort Øremærket er blevet en social bevægelse blandt unge danskere. Ikke fordi nogen har bedt dem om det — men fordi det giver mening. Og fordi Tobias Rahim synes det er fedt.",
+    billede: "/images/natursteder/faellesskab-badebro.webp",
+    billedeAlt: "Sociale fællesskaber",
+  },
+  {
+    slug: "faelles",
+    titel: "Den danske sommer tilhører alle, det gør naturen også",
+    tekst: [
+      "Bag hvert naturområde Dankort Øremærket har støttet ligger millioner af helt almindelige betalinger fra helt almindelige danskere. Det er ikke en stor handling — det er mange små. Og tilsammen er de noget ret særligt.",
+      "Dankort Øremærket er ikke noget du melder dig ind i. Det er et fællesskab du er en del af, hver gang du betaler.",
+    ],
+    billede: "/images/natursteder/faellesskab-picnic.webp",
+    billedeAlt: "Fællesskab",
+  },
+];
+---
+
+{
+  vaerdier.map((v, index) => (
+    <section class={`vaerdi-sektion ${index !== 0 ? "skjult" : ""}`} id={v.slug}>
+      {/* ── GUL BLOK: overskrift (mobil øverst, desktop venstre) ── */}
+      <div class="gul-blok">
+        <h2 class="vaerdi-overskrift">{v.titel}</h2>
+        {/* Brødtekst er skjult i gul blok på mobil — vises nedenunder billedet */}
+        {Array.isArray(v.tekst) ? v.tekst.map((afsnit) => <p class="vaerdi-tekst desktop-tekst">{afsnit}</p>) : <p class="vaerdi-tekst desktop-tekst">{v.tekst}</p>}
+      </div>
+
+      {/* ── BILLEDE MED DANKORT-OVERLAY ── */}
+      <div class="billede-wrapper">
+        <img src={v.billede} alt={v.billedeAlt} class="vaerdi-billede" />
+        <img src="/images/ui/dankort-icon.svg" alt="Dankort" class="dankort-overlay" />
+      </div>
+
+      {/* ── BRØDTEKST (kun synlig på mobil — under billedet) ── */}
+      {Array.isArray(v.tekst) ? v.tekst.map((afsnit) => <p class="vaerdi-tekst mobil-tekst">{afsnit}</p>) : <p class="vaerdi-tekst mobil-tekst">{v.tekst}</p>}
+
+      {/* ── STATISK BUND: CTA + papirstykke ── */}
+      <div class="cta-omraade">
+        <p class="cta-spoergsmaal">Vil du være en del af fællesskabet?</p>
+        <div class="papirstykke-wrapper">
+          <button class="bestil-knap" onclick="document.getElementById('popup').classList.add('aaben')">
+            Sådan bestiller du Dankort
+          </button>
+          <img src="/images/collage/papirstykke-sort.png" alt="" class="papirstykke" aria-hidden="true" />
+        </div>
+      </div>
+    </section>
+  ))
+}
+
+<style>
+  /* =====================
+     MOBILE FIRST
+     ===================== */
+
+  .vaerdi-sektion {
+    font-family: var(--font-body);
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    overflow: visible;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* GUL BLOK */
+  .gul-blok {
+    background-color: var(--solsikkegul-lys);
+    padding: 2rem 1.25rem 4rem;
+    /* Den ekstra padding-bottom giver plads til at billedet kan overlappe */
+  }
+
+  .vaerdi-overskrift {
+    font-family: var(--font-body);
+    font-size: 2rem;
+    font-weight: 900;
+    color: #111;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  /* Brødtekst i gul blok — kun synlig på desktop */
+  .desktop-tekst {
+    font-family: var(--font-body);
+    display: none;
+  }
+
+  /* BILLEDE WRAPPER */
+  .billede-wrapper {
+    position: relative;
+    /* Negative margin-top trækker billedet op over den gule blok */
+    margin-top: -2.5rem;
+    margin-left: 1.25rem;
+    margin-right: 0; /* Billedet går til kanten til højre */
+    overflow: visible;
+  }
+
+  .vaerdi-billede {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Dankort SVG overlay — nederste venstre hjørne på billedet */
+  .dankort-overlay {
+    position: absolute;
+    bottom: -3.2rem;
+    left: -2.2rem;
+    width: 200px;
+    height: auto;
+    rotate: -6deg;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  /* BRØDTEKST — kun mobil */
+  .mobil-tekst {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #222;
+    padding: 3rem 1.25rem 1.5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* CTA OMRÅDE */
+  .cta-omraade {
+    padding: 1.5rem 1.25rem 0;
+  }
+
+  .cta-spoergsmaal {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 1rem;
+  }
+
+  /* Papirstykke-wrapper: knappen sidder oven på billedet */
+.papirstykke {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin-top: -4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .papirstykke-wrapper {
+    position: relative;
+    margin-left: -1.25rem;
+  }
+
+  .bestil-knap {
+    margin-left: 1.25rem;
+  }
+
+  .bestil-knap {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    background-color: rgba(161, 234, 172, 0.2);
+    border: 3px solid var(--limegroen-lys);
+    color: var(--limegroen-mork);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  .bestil-knap:hover {
+    background-color: rgba(161, 234, 172, 0.5);
+  }
+
+  .skjult {
+    display: none;
+  }
+
+  .vaerdi-tekst + .vaerdi-tekst {
+    margin-top: 1rem;
+  }
+
+  /* =====================
+     DESKTOP (1024px+)
+     ===================== */
+
+  @media (min-width: 1024px) {
+    .vaerdi-sektion {
+      /* To kolonner: gul blok til venstre, billede til højre */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "gul    billede"
+        "cta    billede";
+      min-height: 420px;
+    }
+
+    .gul-blok {
+      background-color: var(--solsikkegul-lys);
+      padding: 3.5rem 3rem 2rem;
+      /* Ingen ekstra bottom-padding på desktop — billedet overlapper fra siden */
+    }
+
+    /* Vis brødtekst i gul blok på desktop */
+    .desktop-tekst {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #222;
+      margin-top: 1.25rem;
+    }
+
+    .vaerdi-overskrift {
+      font-size: 3rem;
+    }
+
+    /* Skjul mobil-tekst på desktop */
+    .mobil-tekst {
+      display: none;
+    }
+
+    .billede-wrapper {
+      grid-area: billede;
+      margin: 0;
+      /* 54px overlap øverst og til højre som vist i prototypen */
+      margin-top: -54px;
+      margin-right: -54px;
+      position: relative;
+    }
+
+    .vaerdi-billede {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .dankort-overlay {
+      position: absolute;
+      bottom: -rem;
+      left: -11rem;
+      width: 450px;
+      height: auto;
+      rotate: -6deg;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .cta-omraade {
+      grid-area: cta;
+      padding: 2rem 3rem 3rem;
+      align-self: end;
+    }
+
+    .cta-spoergsmaal {
+      font-size: 1.3rem;
+    }
+
+    .bestil-knap {
+      font-size: 1rem;
+      padding: 0.75rem 1.75rem;
+      top: 2rem;
+    }
+
+    .papirstykke {
+      width: 500px;
+    }
+
+    .vaerdi-sektion.skjult {
+      display: none;
+    }
+  }
+</style>

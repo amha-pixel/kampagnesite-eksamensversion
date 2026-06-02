@@ -1,0 +1,116 @@
+---
+// InfoSektion.astro
+---
+
+<section class="info-sektion">
+  <div class="info-kort">
+    <!-- Papir/tape øverst -->
+    <img src="/images/collage/papir-sort.png" alt="" class="papir papir--top" aria-hidden="true" />
+
+    <div class="info-indhold">
+      <h2 class="info-overskrift">Dankort giver den danske natur tilbage til danskerne</h2>
+
+      <p class="info-tekst">Dankort er faktisk det smarteste valg. Det er gratis at bruge. Det er dansk. Det er sikkert. Og det er det eneste betalingskort, der automatisk støtter dansk natur, hver gang du bruger det.</p>
+
+      <p class="info-tekst">Internationale betalingskort giver dig måske cashback, men pengene ryger ud af landet. Med Dankort bliver de herhjemme.</p>
+    </div>
+
+    <!-- Grønt papir nederst -->
+    <img src="/images/collage/papir-groen.png" alt="" class="papir papir--bottom" aria-hidden="true" />
+  </div>
+</section>
+
+<style>
+  /* =====================
+     MOBILE FIRST
+     ===================== */
+
+.info-sektion {
+    background-color: var(--hvid);
+    padding: 2rem 0 0.5rem 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+.info-kort {
+    position: relative;
+    background-color: #FFD998;
+    padding: 1.5rem 1.5rem 1.5rem;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .papir--top {
+    position: absolute;
+    top: -55px;
+    left: 10rem;
+    width: 120px;
+    height: auto;
+    rotate: -24deg;
+  }
+
+  .papir--bottom {
+    position: absolute;
+    bottom: -64px;
+    right: 9rem;
+    width: 130px;
+    height: auto;
+    rotate: 27deg;
+  }
+
+  .info-overskrift {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--sort);
+    margin: 0 0 1rem;
+    line-height: 1.3;
+  }
+
+  .info-tekst {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--sort);
+    margin: 0 0 0.75rem;
+  }
+
+  .info-tekst:last-child {
+    margin-bottom: 0;
+  }
+
+  /* =====================
+     DESKTOP (1024px+)
+     ===================== */
+
+     @media (min-width: 1024px) {
+  .info-sektion {
+    padding: 3rem 0 3rem 0;
+  }
+
+  .info-kort {
+    width: 70%;
+    max-width: none;
+    padding: 3rem 8rem 3rem 3rem;
+  }
+
+  .info-overskrift {
+    font-size: 2.2rem;
+  }
+
+  .papir--top {
+    width: 180px;
+    top: -53px;
+    right: -4rem;
+    left: auto;
+    rotate: 6deg;
+  }
+
+  .papir--bottom {
+    width: 190px;
+    bottom: -68px;
+    right: -4rem;
+    rotate: 3deg;
+  }
+}
+</style>

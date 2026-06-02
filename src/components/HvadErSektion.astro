@@ -1,0 +1,159 @@
+---
+
+---
+
+<section class="hvad-er">
+  <h2>Hvad er Dankort <span class="display">Øremærket?</span></h2>
+
+  <div class="indhold-grid">
+    <div class="billede-wrapper">
+      <img src="/images/natursteder/natursted-moens-klint.webp" alt="Møns Klint" class="klint-billede" />
+      <img src="/images/natursteder/danmarkskort.png" alt="Danmarkskort" class="danmarkskort" />
+    </div>
+    <div class="tekstboks">
+      <p class="fremhaevet">Okay, det her er faktisk ret simpelt.</p>
+      <p>Hver gang du betaler med dit Dankort, donerer Dankort selv 1 øre til Den Danske Naturfond. Du behøver ikke gøre noget, tilmelde dig noget eller betale ekstra. Det sker bare, hver gang du betaler med dit Dankort.</p>
+      <p>Og nej, det er ikke for at få dig til at bruge flere penge. Det er bare det bedre valg, når du alligevel skal betale for din kaffe, din frokost eller det der impulskøb kl. 23.</p>
+      <p class="stor-tekst"><strong>Dankort donerer minimum 10 millioner kroner om året til Naturfonden.</strong></p>
+      <p>Det svarer til over 830.000 kvadratmeter ny vild natur hvert år! Handler du i en partnerbutik eller har du kort fra en partnerbank, donerer de også, så kan det blive op til 3 øre pr. betaling.</p>
+      <p><strong>Én betaling er én øre.<br />Mange betalinger er en hel skov.</strong></p>
+      <a href="/overblik" class="cta-knap">Tjek donationerne ud</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hvad-er {
+    background-color: var(--solsikkegul-lys);
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 :global(.display) {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .tekstboks {
+    background-color: var(--hvid);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .fremhaevet {
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .billede-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .klint-billede {
+    width: 80%;
+    display: block;
+  }
+
+  .danmarkskort {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 40%;
+  }
+
+  .donation-tekst {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stor-tekst {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .cta-knap {
+    display: block;
+    margin: 1rem auto 0;
+    background-color: rgba(161, 234, 172, 0.2);
+    border: 3px solid var(--limegroen-lys);
+    color: var(--limegroen-mork);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .tekstboks p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 1024px) {
+    .hvad-er {
+      padding: 3rem 2rem;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .indhold-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .billede-wrapper {
+      grid-column: 2 / 3;
+      grid-row: 1 / 3;
+    }
+
+    .tekstboks {
+      grid-column: 1 / 2;
+      grid-row: 1;
+    }
+
+    .cta-knap {
+      grid-column: 1 / 2;
+    }
+
+    .billede-wrapper {
+      grid-column: 2 / 3;
+      grid-row: 1 / 3;
+      order: 2;
+    }
+
+    .tekstboks {
+      grid-column: 1 / 2;
+      order: 1;
+      align-items: flex-start;
+    }
+  }
+</style>

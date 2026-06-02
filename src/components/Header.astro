@@ -1,0 +1,138 @@
+---
+
+---
+
+<header>
+  <a href="/" class="logo">
+    <img src="/images/ui/dankort-logo.svg" alt="Dankort logo" />
+  </a>
+  <span class="titel"><strong class="dankort-navn">Dankort</strong> Øremærket</span>
+  <nav class="menu" id="menu">
+    <a href="/">Hvad er Dankort Øremærket?</a>
+    <a href="/overblik" class="naturgroen-link">Danmarkskortet</a>
+  </nav>
+  <button class="menu-knap" aria-label="Åbn menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<style>
+  header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--solsikkegul-lys);
+    padding: 0.75rem 1rem;
+  }
+
+  .logo img {
+    height: 48px;
+    width: auto;
+  }
+
+  .titel {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+  }
+
+  .menu-knap {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .menu-knap span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--sort);
+    border-radius: 2px;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--solsikkegul-lys);
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .menu.aaben {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .menu a {
+    color: var(--sort);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+  }
+
+  .menu a:last-child {
+    border-bottom: none;
+  }
+
+  .menu a.naturgroen-link {
+    color: var(--naturgroen);
+  }
+
+  .dankort-navn {
+    font-family: var(--font-body);
+    font-weight: 800;
+  }
+
+  @media (min-width: 1024px) {
+    header {
+      padding: 0.75rem 2rem;
+    }
+
+    .titel {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: transparent;
+      padding: 0;
+      gap: 2rem;
+      position: static;
+    }
+
+    .menu-knap {
+      display: none;
+    }
+
+    .menu a:first-child {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const knap = document.querySelector<HTMLButtonElement>(".menu-knap");
+  const menu = document.getElementById("menu");
+
+  knap?.addEventListener("click", () => {
+    const erAaben = menu?.classList.toggle("aaben");
+    knap.setAttribute("aria-expanded", erAaben ? "true" : "false");
+  });
+</script>

@@ -1,0 +1,95 @@
+---
+---
+
+<section class="partnerskaber">
+  <div class="tekst">
+    <img src="/images/collage/papir-fersken.png" alt="" class="papir-fersken" />
+    <h2>Partnerskaber</h2>
+    <p>En række danske butikker og banker har valgt at være med i Dankort Øremærket. Det betyder at de donerer 1 øre oveni Dankorts øre, hver gang du betaler med Dankort hos dem. To øre pr. betaling og stadig gratis for dig.</p>
+  </div>
+
+  <img src="/images/ui/post-it-partnerskaber.png" alt="Liste over partnere" class="post-it" />
+</section>
+
+<style>
+  .partnerskaber {
+    position: relative;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .tekst {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .papir-fersken {
+    position: absolute;
+    top: -40px;
+    left: -20px;
+    width: 60%;
+    z-index: 0;
+  }
+
+  h2 {
+    position: relative;
+    z-index: 1;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .post-it {
+    width: 100%;
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    .partnerskaber {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      margin-top: 5rem;
+    }
+
+    .tekst {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      margin-bottom: 0;
+    }
+
+    .post-it {
+      grid-column: 2 / 3;
+      grid-row: 1;
+      width: 80%;
+      justify-self: center;
+    }
+
+    .papir-fersken {
+    position: absolute;
+    top: -100px;
+    left: -50px;
+    width: 60%;
+    z-index: 0;
+  }
+
+    h2 {
+      font-size: 2.2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+</style>

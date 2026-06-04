@@ -1,43 +1,87 @@
-# Astro Starter Kit: Minimal
+# Dankort Øremærket — Kampagnesite
 
-```sh
-npm create astro@latest -- --template minimal
+Kampagnesite udviklet som eksamensprojekt på Erhvervsakademi København, 2. semester multimediedesign, 2026.
+
+Kampagnen retter sig mod 18–28-årige danskere og har til formål at skabe interesse for Dankort Øremærket — et initiativ hvor Dankort donerer 1 øre til Den Danske Naturfond ved hver betaling med Dankort.
+
+## Deployed site
+
+[oeremaerket-2026.netlify.app](https://oeremaerket-2026.netlify.app)
+
+## Tech stack
+
+- [Astro](https://astro.build/) — komponentbaseret statisk site generator med mobilfirst tilgang og 1024px breakpoint
+- [Supabase](https://supabase.com/) — PostgreSQL database med `natursteder` tabel og Storage til billeder
+- [Netlify](https://www.netlify.com/) — deployment og hosting
+- [Adobe Firefly](https://firefly.adobe.com/) — AI-genereret videoindhold til hero-sektion og billeder på sitet
+
+## Projektstruktur
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
+│   ├── images/
+│   │   ├── collage/        # Kollage-elementer og baggrundsbilleder
+│   │   ├── natursteder/    # Naturstedsbilleder
+│   │   └── ui/             # UI-elementer som logo
+│   └── video/
+│       ├── hero-desktop.mp4
+│       └── hero-mobil.mp4
 ├── src/
+│   ├── components/
+│   │   ├── CtaKnap.astro
+│   │   ├── SekundaerKnap.astro
+│   │   ├── HeroSektion.astro
+│   │   ├── HvadErSektion.astro
+│   │   ├── SpoergsmaalSektion.astro
+│   │   ├── SamarbejdsSektion.astro
+│   │   ├── PartnerskabsSektion.astro
+│   │   ├── QandASektion.astro
+│   │   ├── FordeleSektion.astro
+│   │   ├── BestilPopup.astro
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   └── Layout.astro
 │   └── pages/
-│       └── index.astro
-└── package.json
+│       ├── index.astro
+│       ├── overblik.astro
+│       └── natursted/
+│           └── [slug].astro
+└── src/styles/
+└── global.css
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Kom i gang lokalt
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+# Installer dependencies
+npm install
 
-Any static assets, like images, can be placed in the `public/` directory.
+# Start udviklingsserver
+npm run dev
 
-## 🧞 Commands
+# Byg til produktion
+npm run build
 
-All commands are run from the root of the project, from a terminal:
+# Forhåndsvis produktionsbuild
+npm run preview
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Udviklingsserveren starter på `http://localhost:4321`
 
-## 👀 Want to learn more?
+## Environment variables
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Opret en `.env` fil i roden af projektet:
+```
+PUBLIC_SUPABASE_URL=din-supabase-url
+PUBLIC_SUPABASE_ANON_KEY=din-anon-nøgle
+```
+
+Nøglerne finder du i Supabase dashboard under **Project Settings → API**.
+
+## Database
+
+Projektet bruger Supabase med en `natursteder` tabel der indeholder 20 fiktive natursteder. Row Level Security (RLS) er aktiveret med en `Allow public read` policy der tillader anonyme brugere at læse data.
+
+## Bemærkning om AI-genereret indhold
+
+Videoindholdet i hero-sektionen er udelukkende produceret i uddannelsesøjemed med generativ AI i Adobe Firefly og må ikke anvendes kommercielt eller reproduceres. Den portrætterede figur er en AI-genereret person.

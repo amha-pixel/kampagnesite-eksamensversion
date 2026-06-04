@@ -2,70 +2,74 @@
 const fordele = [
   {
     titel: "Det koster dig ikke noget",
-    beskrivelse: "Ingen årsgebyr, ingen transaktionsgebyr, ingen skjulte omkostninger. Det er faktisk ret sjældent — både i Danmark og resten af verden."
+    beskrivelse: "Ingen årsgebyr, ingen transaktionsgebyr, ingen skjulte omkostninger. Det er faktisk ret sjældent — både i Danmark og resten af verden.",
   },
   {
     titel: "Din lokale butik foretrækker Dankort",
-    beskrivelse: "Dankort er det billigste kort for butikkerne at modtage. Når du betaler med Dankort, beholder din lokale butik flere penge frem for at sende dem til et hovedkontor i udlandet."
+    beskrivelse: "Dankort er det billigste kort for butikkerne at modtage. Når du betaler med Dankort, beholder din lokale butik flere penge frem for at sende dem til et hovedkontor i udlandet.",
   },
   {
     titel: "Du gør noget godt uden at gøre noget",
-    beskrivelse: "Hver gang du betaler med Dankort, donerer Dankort 1 øre til dansk natur. Ikke dine penge — Dankorts egne. Du behøver ikke tilmelde dig noget eller tænke over det."
+    beskrivelse: "Hver gang du betaler med Dankort, donerer Dankort 1 øre til dansk natur. Ikke dine penge — Dankorts egne. Du behøver ikke tilmelde dig noget eller tænke over det.",
   },
   {
     titel: "Det er det mest brugte betalingskort i Danmark",
-    beskrivelse: "Dankort virker overalt i Danmark — i alle butikker, alle supermarkeder og alle kiosker. Det er bygget til det danske marked og har gjort det i årtier."
+    beskrivelse: "Dankort virker overalt i Danmark — i alle butikker, alle supermarkeder og alle kiosker. Det er bygget til det danske marked og har gjort det i årtier.",
   },
   {
     titel: "Pengene bliver i Danmark",
-    beskrivelse: "Når du betaler med Visa eller Mastercard, går en del af gebyret til internationale selskaber. Med Dankort forbliver pengene i dansk infrastruktur."
+    beskrivelse: "Når du betaler med Visa eller Mastercard, går en del af gebyret til internationale selskaber. Med Dankort forbliver pengene i dansk infrastruktur.",
   },
   {
     titel: "Du er beskyttet af dansk lovgivning",
-    beskrivelse: "Dankort er reguleret af dansk lov. Det betyder at priserne er kontrollerede af Konkurrencestyrelsen og at du som forbruger har stærke rettigheder hvis noget går galt."
+    beskrivelse: "Dankort er reguleret af dansk lov. Det betyder at priserne er kontrollerede af Konkurrencestyrelsen og at du som forbruger har stærke rettigheder hvis noget går galt.",
   },
   {
     titel: "Nogen andre donerer også når du handler",
-    beskrivelse: "Bruger du Dankort i en partnerbutik eller har kort fra en partnerbank, donerer de også en øre oveni. Én betaling kan blive til tre øre — stadig gratis for dig."
+    beskrivelse: "Bruger du Dankort i en partnerbutik eller har kort fra en partnerbank, donerer de også en øre oveni. Én betaling kan blive til tre øre — stadig gratis for dig.",
   },
   {
     titel: "Du støtter natur du selv kan besøge",
-    beskrivelse: "Naturfondens områder er åbne for alle. Det er ikke natur bag et hegn — det er steder du kan gå en tur, tage en svømmetur eller bare sidde og kigge ud over."
+    beskrivelse: "Naturfondens områder er åbne for alle. Det er ikke natur bag et hegn — det er steder du kan gå en tur, tage en svømmetur eller bare sidde og kigge ud over.",
   },
   {
     titel: "Det er nemt at få fat på",
-    beskrivelse: "Du bestiller Dankort gennem din bank — de fleste banker tilbyder det som en del af din konto. Ingen særlig ansøgning, ingen ventetid."
+    beskrivelse: "Du bestiller Dankort gennem din bank — de fleste banker tilbyder det som en del af din konto. Ingen særlig ansøgning, ingen ventetid.",
   },
   {
     titel: "Du er en del af noget større",
-    beskrivelse: "Bag hvert naturområde Dankort Øremærket har støttet ligger millioner af helt almindelige betalinger fra helt almindelige danskere. Det er ikke en stor gest — det er mange små. Og tilsammen er de noget ret særligt."
-  }
+    beskrivelse: "Bag hvert naturområde Dankort Øremærket har støttet ligger millioner af helt almindelige betalinger fra helt almindelige danskere. Det er ikke en stor gest — det er mange små. Og tilsammen er de noget ret særligt.",
+  },
 ];
 ---
 
 <section class="fordele">
-  <h2>Derfor giver det mening. Klik og se alle fordelene</h2>
+  <div class="container">
+    <h2>Derfor giver det mening. Klik og se alle fordelene</h2>
+  </div>
 
   <div class="karrusel-wrapper">
-    <div class="karrusel" id="fordele-karrusel">
-      {fordele.map((item, i) => (
-        <div class="card" data-index={i}>
-          <div class="card-indre">
-            <div class="forside">
-              <p>{item.titel}</p>
+    <div class="container">
+      <div class="karrusel" id="fordele-karrusel">
+        {
+          fordele.map((item, i) => (
+            <div class="card" data-index={i}>
+              <div class="card-indre">
+                <div class="forside">
+                  <p>{item.titel}</p>
+                </div>
+                <div class="bagside">
+                  <p>{item.beskrivelse}</p>
+                </div>
+              </div>
             </div>
-            <div class="bagside">
-              <p>{item.beskrivelse}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+          ))
+        }
+      </div>
 
-    <div class="prikker" id="fordele-prikker">
-      {fordele.map((_, i) => (
-        <button class="prik" data-index={i} aria-label={`Gå til fordel ${i + 1}`}></button>
-      ))}
+      <div class="prikker" id="fordele-prikker">
+        {fordele.map((_, i) => <button class="prik" data-index={i} aria-label={`Gå til fordel ${i + 1}`} />)}
+      </div>
     </div>
   </div>
 </section>
@@ -80,11 +84,10 @@ const fordele = [
     font-weight: 800;
     text-align: left;
     margin-bottom: 2rem;
-    padding: 0 1rem;
   }
 
   .karrusel-wrapper {
-    background-color: #FFD998;
+    background-color: #ffd998;
     padding: 2rem 0 1.5rem;
   }
 
@@ -129,13 +132,13 @@ const fordele = [
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background-color: #FFE8B6;
+    background-color: #ffe8b6;
     border-radius: 0.75rem;
     padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .forside p {
@@ -166,11 +169,13 @@ const fordele = [
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #FFE8B6;
+    background-color: #ffe8b6;
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
   }
 
   .prik.aktiv {
@@ -196,20 +201,20 @@ const fordele = [
 </style>
 
 <script>
-  const karrusel = document.getElementById('fordele-karrusel') as HTMLElement;
-  const prikker = document.querySelectorAll('#fordele-prikker .prik');
-  const cards = karrusel.querySelectorAll('.card');
+  const karrusel = document.getElementById("fordele-karrusel") as HTMLElement;
+  const prikker = document.querySelectorAll("#fordele-prikker .prik");
+  const cards = karrusel.querySelectorAll(".card");
 
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('aaben');
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("aaben");
     });
   });
 
   prikker.forEach((prik, i) => {
-    prik.addEventListener('click', () => {
+    prik.addEventListener("click", () => {
       const card = cards[i] as HTMLElement;
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     });
   });
 
@@ -224,10 +229,10 @@ const fordele = [
       }
     });
     prikker.forEach((p, i) => {
-      p.classList.toggle('aktiv', i === aktivIndex);
+      p.classList.toggle("aktiv", i === aktivIndex);
     });
   };
 
-  karrusel.addEventListener('scroll', opdaterPrik);
+  karrusel.addEventListener("scroll", opdaterPrik);
   opdaterPrik();
 </script>

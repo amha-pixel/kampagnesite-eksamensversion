@@ -2,70 +2,74 @@
 const spoergsmaal = [
   {
     spørgsmål: "Er det mine egne penge der doneres?",
-    svar: "Nej. Dankort donerer selv 1 øre pr. betaling — ikke dig. Det koster dig ingenting ekstra."
+    svar: "Nej. Dankort donerer selv 1 øre pr. betaling — ikke dig. Det koster dig ingenting ekstra.",
   },
   {
     spørgsmål: "Hvad er Den Danske Naturfond?",
-    svar: "En privat fond stiftet i 2015, der køber, beskytter og genopretter natur i hele Danmark. De arbejder uafhængigt og har ingen særlige interesser. Pengene går ubeskåret til natur."
+    svar: "En privat fond stiftet i 2015, der køber, beskytter og genopretter natur i hele Danmark. De arbejder uafhængigt og har ingen særlige interesser. Pengene går ubeskåret til natur.",
   },
   {
     spørgsmål: "Opfordrer det til merforbrug?",
-    svar: "Nej. Idéen er at vælge Dankort når du alligevel skal betale — ikke at bruge flere penge."
+    svar: "Nej. Idéen er at vælge Dankort når du alligevel skal betale — ikke at bruge flere penge.",
   },
   {
     spørgsmål: "Hvad hvis jeg ikke vil støtte Naturfonden?",
-    svar: "Så vælger du bare en anden betalingsform. Simpelt."
+    svar: "Så vælger du bare en anden betalingsform. Simpelt.",
   },
   {
     spørgsmål: "Kan jeg se hvilken natur mine betalinger støtter?",
-    svar: "Ja. På Danmarkskortet kan du se alle de naturområder Dankort Øremærket har bidraget til — fra Falster til Jammerbugten."
+    svar: "Ja. På Danmarkskortet kan du se alle de naturområder Dankort Øremærket har bidraget til — fra Falster til Jammerbugten.",
   },
   {
     spørgsmål: "Donerer butikkerne også?",
-    svar: "Nogle gør. Partnere i Dankort Øremærket donerer 1 øre oveni Dankorts øre — så én betaling kan blive til 2 eller 3 øre."
+    svar: "Nogle gør. Partnere i Dankort Øremærket donerer 1 øre oveni Dankorts øre — så én betaling kan blive til 2 eller 3 øre.",
   },
   {
     spørgsmål: "Er der dyr i naturområderne?",
-    svar: "Ja. Heste og kvæg afgræsser flere af områderne — det skaber mere mangfoldig natur. Naturfonden ejer ikke selv dyrene, men indgår aftaler med lokale dyreholdere."
+    svar: "Ja. Heste og kvæg afgræsser flere af områderne — det skaber mere mangfoldig natur. Naturfonden ejer ikke selv dyrene, men indgår aftaler med lokale dyreholdere.",
   },
   {
     spørgsmål: "Hvad gør Naturfonden konkret med pengene?",
-    svar: "De lader vand flyde frit, fjerner invasive planter, forvandler marker til blomsterenge og lader gamle træer stå. Ingen fancy løsninger — bare mere vild natur."
+    svar: "De lader vand flyde frit, fjerner invasive planter, forvandler marker til blomsterenge og lader gamle træer stå. Ingen fancy løsninger — bare mere vild natur.",
   },
   {
     spørgsmål: "Hvad er forskellen på Dankort og Visa/Mastercard?",
-    svar: "Dankort er dansk, gratis at bruge og har gebyrer fastsat ved lov. Visa og Mastercard er internationale — og butikkerne betaler betydeligt mere for at modtage dem. Den regning ender til sidst i priserne på varerne."
+    svar: "Dankort er dansk, gratis at bruge og har gebyrer fastsat ved lov. Visa og Mastercard er internationale — og butikkerne betaler betydeligt mere for at modtage dem. Den regning ender til sidst i priserne på varerne.",
   },
   {
     spørgsmål: "Kan jeg bruge Dankort på mobilen?",
-    svar: "Ja. Danske Bank tilbyder Dankort i Apple Pay. Bruger du en anden bank, betaler du sandsynligvis med Visa- eller Mastercard-delen af dit kort når du tapper med mobilen — selv hvis du tror du bruger Dankort."
-  }
+    svar: "Ja. Danske Bank tilbyder Dankort i Apple Pay. Bruger du en anden bank, betaler du sandsynligvis med Visa- eller Mastercard-delen af dit kort når du tapper med mobilen — selv hvis du tror du bruger Dankort.",
+  },
 ];
 ---
 
 <section class="faq">
-  <h2>Det folk bliver ved med at spørge om</h2>
+  <div class="container">
+    <h2>Det folk bliver ved med at spørge om</h2>
+  </div>
 
   <div class="karrusel-wrapper">
-    <div class="karrusel" id="karrusel">
-      {spoergsmaal.map((item, i) => (
-        <div class="card" data-index={i}>
-          <div class="card-indre">
-            <div class="forside">
-              <p>{item.spørgsmål}</p>
+    <div class="container">
+      <div class="karrusel" id="karrusel">
+        {
+          spoergsmaal.map((item, i) => (
+            <div class="card" data-index={i}>
+              <div class="card-indre">
+                <div class="forside">
+                  <p>{item.spørgsmål}</p>
+                </div>
+                <div class="bagside">
+                  <p>{item.svar}</p>
+                </div>
+              </div>
             </div>
-            <div class="bagside">
-              <p>{item.svar}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+          ))
+        }
+      </div>
 
-    <div class="prikker" id="prikker">
-      {spoergsmaal.map((_, i) => (
-        <button class="prik" data-index={i} aria-label={`Gå til kort ${i + 1}`}></button>
-      ))}
+      <div class="prikker" id="prikker">
+        {spoergsmaal.map((_, i) => <button class="prik" data-index={i} aria-label={`Gå til kort ${i + 1}`} />)}
+      </div>
     </div>
   </div>
 </section>
@@ -84,7 +88,7 @@ const spoergsmaal = [
   }
 
   .karrusel-wrapper {
-    background-color: #FFD998;
+    background-color: #ffd998;
     padding: 2rem 0 1.5rem;
   }
 
@@ -129,13 +133,13 @@ const spoergsmaal = [
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background-color: #FFE8B6;
+    background-color: #ffe8b6;
     border-radius: 0.75rem;
     padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .forside p {
@@ -166,11 +170,13 @@ const spoergsmaal = [
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #FFE8B6;
+    background-color: #ffe8b6;
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
   }
 
   .prik.aktiv {
@@ -179,12 +185,12 @@ const spoergsmaal = [
   }
 
   h2 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  text-align: left;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-}
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
 
   @media (min-width: 1024px) {
     .faq {
@@ -204,22 +210,22 @@ const spoergsmaal = [
 </style>
 
 <script>
-  const karrusel = document.getElementById('karrusel') as HTMLElement;
-  const prikker = document.querySelectorAll('.prik');
-  const cards = document.querySelectorAll('.card');
+  const karrusel = document.getElementById("karrusel") as HTMLElement;
+  const prikker = document.querySelectorAll(".prik");
+  const cards = document.querySelectorAll(".card");
 
   // Flip kort ved klik
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('aaben');
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("aaben");
     });
   });
 
   // Klik på prik scroller til kort
   prikker.forEach((prik, i) => {
-    prik.addEventListener('click', () => {
+    prik.addEventListener("click", () => {
       const card = cards[i] as HTMLElement;
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     });
   });
 
@@ -235,10 +241,10 @@ const spoergsmaal = [
       }
     });
     prikker.forEach((p, i) => {
-      p.classList.toggle('aktiv', i === aktivIndex);
+      p.classList.toggle("aktiv", i === aktivIndex);
     });
   };
 
-  karrusel.addEventListener('scroll', opdaterPrik);
+  karrusel.addEventListener("scroll", opdaterPrik);
   opdaterPrik();
 </script>

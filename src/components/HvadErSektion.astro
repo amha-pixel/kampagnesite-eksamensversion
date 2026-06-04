@@ -1,5 +1,5 @@
 ---
-
+import CtaKnap from "./CtaKnap.astro";
 ---
 
 <section class="hvad-er">
@@ -18,7 +18,7 @@
         <p class="stor-tekst"><strong>Dankort donerer minimum 10 millioner kroner om året til Naturfonden.</strong></p>
         <p>Det svarer til over 830.000 kvadratmeter ny vild natur hvert år! Handler du i en partnerbutik eller har du kort fra en partnerbank, donerer de også, så kan det blive op til 3 øre pr. betaling.</p>
         <p><strong>Én betaling er én øre.<br />Mange betalinger er en hel skov.</strong></p>
-        <a href="/overblik" class="cta-knap">Tjek donationerne ud</a>
+        <CtaKnap href="/overblik" tekst="Tjek donationerne ud" />
       </div>
     </div>
   </div>
@@ -33,17 +33,12 @@
 
   h2 {
     font-size: 1.8rem;
-    font-weight: 800;
     line-height: 1.2;
     margin-bottom: 1.5rem;
   }
 
-  h2 :global(.display) {
-    font-family: var(--font-display);
-    font-weight: 400;
-  }
-
   .tekstboks {
+    align-items: flex-start;
     background-color: var(--hvid);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -90,22 +85,6 @@
   .stor-tekst {
     font-size: 1.1rem;
     line-height: 1.4;
-  }
-
-  .cta-knap {
-    display: block;
-    margin: 1rem auto 0;
-    background-color: rgba(161, 234, 172, 0.2);
-    border: 3px solid var(--limegroen-lys);
-    color: var(--limegroen-mork);
-    padding: 0.6rem 1.25rem;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 0.95rem;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
   }
 
   .tekstboks p {

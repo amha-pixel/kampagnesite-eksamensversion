@@ -1,0 +1,41 @@
+---
+interface Props {
+  tekst: string;
+  href?: string;
+  type?: "button" | "submit";
+}
+
+const { tekst, href, type = "button" } = Astro.props;
+---
+
+{
+  href ? (
+    <a href={href} class="cta-knap">
+      {tekst}
+    </a>
+  ) : (
+    <button type={type} class="cta-knap">
+      {tekst}
+    </button>
+  )
+}
+
+<style>
+  .cta-knap {
+    display: inline-flex;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    background: rgba(161, 234, 172, 0.4);
+    border: 2px solid var(--limegroen-mork);
+    color: var(--sort);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  tekst: string;
+  href?: string;
+  type?: "button" | "submit";
+}
+
+const { tekst, href, type = "button" } = Astro.props;
+---
+
+{href ? (
+  <a href={href} class="sekundaer-knap">{tekst}</a>
+) : (
+  <button type={type} class="sekundaer-knap">{tekst}</button>
+)}
+
+<style>
+  .sekundaer-knap {
+    display: inline-block;
+    background: var(--hvid);
+    border: 2px solid var(--sort);
+    color: var(--sort);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+</style>

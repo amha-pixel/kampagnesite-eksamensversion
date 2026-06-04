@@ -13,20 +13,11 @@
 
   /* Gråtoner */
   --sort: #1e1e1e;
-  --moerk-graa: #4a4a4a;
-  --graa: #6a6a6a;
-  --lys-graa: #b4b4b4;
-  --lysere-graa: #d9d9d9;
-  --lysest-graa: #ebebeb;
   --hvid: #ffffff;
 
   /* Fonte */
   --font-body: "Raleway", sans-serif;
   --font-display: "UnifrakturMaguntia", cursive;
-}
-
-span.display {
-  font-family: "UnifrakturMaguntia", cursive;
 }
 
 * {
@@ -41,16 +32,51 @@ body {
   background-color: var(--hvid);
 }
 
+/* Typografi samlet */
 h1,
 h2,
 h3 {
   font-weight: 800;
 }
-
 h1 {
   font-size: 40px;
 }
-
 h2 {
   font-size: 32px;
+}
+h3 {
+  font-size: 1.25rem;
+}
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  h1 {
+    font-size: 56px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
 }

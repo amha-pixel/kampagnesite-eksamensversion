@@ -1,0 +1,139 @@
+---
+
+---
+
+<section class="hero">
+  <div class="video-wrapper">
+    <!-- Mobilvideo: vises kun på mobil -->
+    <video autoplay muted loop playsinline preload="none" id="hero-video-mobil" class="hero-video mobil-video">
+      <source src="/video/hero-mobil.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Desktopvideo: vises kun på desktop -->
+    <video autoplay muted loop playsinline preload="none" id="hero-video-desktop" class="hero-video desktop-video">
+      <source src="/video/hero-desktop.mp4" type="video/mp4" />
+    </video>
+
+    <h1 class="hero-tekst">
+      Mød Dankort <span class="display">Øremærkets</span><br />nye ambassadør
+    </h1>
+
+    <div class="video-kontroller">
+      <button class="video-knap" id="play-pause" aria-label="Pause video">
+        <span id="ikon">⏸</span>
+      </button>
+      <button class="video-knap" id="lyd-knap" aria-label="Slå lyd til"> 🔇 </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-tekst {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    line-height: 1.2;
+    color: var(--sort);
+    z-index: 1;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    background-color: var(--sort);
+    overflow: hidden;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Mobil: vis 9:16, skjul 16:9 */
+  .mobil-video {
+    display: block;
+  }
+
+  .desktop-video {
+    display: none;
+  }
+
+  /* Desktop: vis 16:9, skjul 9:16 */
+  @media (min-width: 1024px) {
+    .mobil-video {
+      display: none;
+    }
+
+    .desktop-video {
+      display: block;
+    }
+  }
+
+  /* Knapper i højre side i bunden */
+  .video-kontroller {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    z-index: 2;
+  }
+
+  .video-knap {
+    background: transparent;
+    border: 2px solid var(--solsikkegul-mork);
+    color: var(--solsikkegul-mork);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  // Find den aktive video baseret på skærmbredde
+  function getAktivVideo(): HTMLVideoElement {
+    const erDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    return document.getElementById(erDesktop ? "hero-video-desktop" : "hero-video-mobil") as HTMLVideoElement;
+  }
+
+  const playKnap = document.getElementById("play-pause");
+  const ikon = document.getElementById("ikon");
+  const lydKnap = document.getElementById("lyd-knap");
+
+  playKnap?.addEventListener("click", () => {
+    const video = getAktivVideo();
+    if (video.paused) {
+      video.play();
+      if (ikon) ikon.textContent = "⏸";
+    } else {
+      video.pause();
+      if (ikon) ikon.textContent = "▶";
+    }
+  });
+
+  lydKnap?.addEventListener("click", () => {
+    const video = getAktivVideo();
+    if (video.muted) {
+      video.muted = false;
+      lydKnap!.textContent = "🔊";
+      lydKnap!.setAttribute("aria-label", "Slå lyd fra");
+    } else {
+      video.muted = true;
+      lydKnap!.textContent = "🔇";
+      lydKnap!.setAttribute("aria-label", "Slå lyd til");
+    }
+  });
+</script>

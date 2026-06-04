@@ -1,5 +1,6 @@
 ---
 import Layout from "../components/Layout.astro";
+import HeroSektion from "../components/HeroSektion.astro";
 import VaerdiCard from "../components/VaerdiCard.astro";
 import SpoergsmaalSektion from "../components/SpoergsmaalSektion.astro";
 import BestilPopup from "../components/BestilPopup.astro";
@@ -10,21 +11,11 @@ import QandASektion from "../components/QandASektion.astro";
 ---
 
 <Layout title="Dankort Øremærket">
-  <section class="hero">
-    <div class="video-wrapper">
-      <video autoplay muted loop playsinline id="hero-video" class="hero-video">
-        <source src="/video/hero.mp4" type="video/mp4" />
-      </video>
-      <h2 class="hero-tekst">Mød <span class="display">Øremærkets</span><br />ambassadør</h2>
-      <button class="play-pause" id="play-pause" aria-label="Pause video">
-        <span id="ikon">⏸</span>
-      </button>
-    </div>
-  </section>
-
+  <HeroSektion />
+  <HvadErSektion />
   <SpoergsmaalSektion />
   <BestilPopup />
-  <HvadErSektion />
+  
 
   <section class="karrusel-sektion">
     <div class="karrusel">
@@ -41,60 +32,6 @@ import QandASektion from "../components/QandASektion.astro";
 </Layout>
 
 <style>
-  .hero {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    height: 80svh;
-    min-height: 400px;
-    background-color: var(--sort);
-  }
-
-  .hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .hero-tekst {
-    position: absolute;
-    top: 1.25rem;
-    left: 1rem;
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: var(--hvid);
-    z-index: 1;
-  }
-
-  .hero-tekst :global(.display) {
-    font-family: var(--font-display);
-    font-weight: 400;
-  }
-
-  .play-pause {
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    background: rgba(255, 255, 255, 0.2);
-    border: 3px solid var(--hvid);
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    font-size: 1.4rem;
-    color: var(--hvid);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
 
   .karrusel-sektion {
     padding: 2rem 0;
@@ -130,18 +67,3 @@ import QandASektion from "../components/QandASektion.astro";
   }
 </style>
 
-<script>
-  const video = document.getElementById("hero-video") as HTMLVideoElement;
-  const knap = document.getElementById("play-pause");
-  const ikon = document.getElementById("ikon");
-
-  knap?.addEventListener("click", () => {
-    if (video.paused) {
-      video.play();
-      if (ikon) ikon.textContent = "⏸";
-    } else {
-      video.pause();
-      if (ikon) ikon.textContent = "▶";
-    }
-  });
-</script>

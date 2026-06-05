@@ -5,7 +5,7 @@ import InfoSektion from "../components/InfoSektion.astro";
 import CitatKort from "../components/CitatKort.astro";
 import VaerdiFilter from "../components/VaerdiFilter.astro";
 import VaerdiSektion from "../components/VaerdiSektion.astro";
-import FordeleSektion from "../components/FordeleSektion.astro";
+import KortKarrusel from "../components/KortKarrusel.astro";
 ---
 
 <Layout title="Dankort Øremærket – Overblik">
@@ -22,7 +22,26 @@ import FordeleSektion from "../components/FordeleSektion.astro";
     <VaerdiFilter />
   </div>
   <VaerdiSektion />
-  <FordeleSektion />
+  <KortKarrusel
+    overskrift="Derfor giver det mening. Klik og se alle fordelene"
+    karruselId="fordele-karrusel"
+    prikId="fordele-prikker"
+    kort={[
+      { forside: "Det koster dig ikke noget", bagside: "Ingen årsgebyr, ingen transaktionsgebyr, ingen skjulte omkostninger. Det er faktisk ret sjældent — både i Danmark og resten af verden." },
+      { forside: "Din lokale butik foretrækker Dankort", bagside: "Dankort er det billigste kort for butikkerne at modtage. Når du betaler med Dankort, beholder din lokale butik flere penge frem for at sende dem til et hovedkontor i udlandet." },
+      { forside: "Du gør noget godt uden at gøre noget", bagside: "Hver gang du betaler med Dankort, donerer Dankort 1 øre til dansk natur. Ikke dine penge — Dankorts egne. Du behøver ikke tilmelde dig noget eller tænke over det." },
+      { forside: "Det er det mest brugte betalingskort i Danmark", bagside: "Dankort virker overalt i Danmark — i alle butikker, alle supermarkeder og alle kiosker. Det er bygget til det danske marked og har gjort det i årtier." },
+      { forside: "Pengene bliver i Danmark", bagside: "Når du betaler med Visa eller Mastercard, går en del af gebyret til internationale selskaber. Med Dankort forbliver pengene i dansk infrastruktur." },
+      { forside: "Du er beskyttet af dansk lovgivning", bagside: "Dankort er reguleret af dansk lov. Det betyder at priserne er kontrollerede af Konkurrencestyrelsen og at du som forbruger har stærke rettigheder hvis noget går galt." },
+      { forside: "Nogen andre donerer også når du handler", bagside: "Bruger du Dankort i en partnerbutik eller har kort fra en partnerbank, donerer de også en øre oveni. Én betaling kan blive til tre øre — stadig gratis for dig." },
+      { forside: "Du støtter natur du selv kan besøge", bagside: "Naturfondens områder er åbne for alle. Det er ikke natur bag et hegn — det er steder du kan gå en tur, tage en svømmetur eller bare sidde og kigge ud over." },
+      { forside: "Det er nemt at få fat på", bagside: "Du bestiller Dankort gennem din bank — de fleste banker tilbyder det som en del af din konto. Ingen særlig ansøgning, ingen ventetid." },
+      {
+        forside: "Du er en del af noget større",
+        bagside: "Bag hvert naturområde Dankort Øremærket har støttet ligger millioner af helt almindelige betalinger fra helt almindelige danskere. Det er ikke en stor gest — det er mange små. Og tilsammen er de noget ret særligt.",
+      },
+    ]}
+  />
 </Layout>
 
 <script>

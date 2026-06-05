@@ -1,0 +1,208 @@
+---
+interface Kort {
+  forside: string;
+  bagside: string;
+}
+
+interface Props {
+  overskrift: string;
+  kort: Kort[];
+  karruselId: string;
+  prikId: string;
+}
+
+const { overskrift, kort, karruselId, prikId } = Astro.props;
+---
+
+<section class="kort-karrusel">
+  <div class="container">
+    <h2>{overskrift}</h2>
+  </div>
+
+  <div class="karrusel-wrapper">
+    <div class="container">
+      <div class="karrusel" id={karruselId}>
+        {
+          kort.map((item, i) => (
+            <div class="card" data-index={i}>
+              <div class="card-indre">
+                <div class="forside">
+                  <p>{item.forside}</p>
+                </div>
+                <div class="bagside">
+                  <p>{item.bagside}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="prikker" id={prikId}>
+        {kort.map((_, i) => <button class="prik" data-index={i} aria-label={`Gå til kort ${i + 1}`} />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kort-karrusel {
+    margin-top: 3rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .karrusel-wrapper {
+    background-color: var(--solsikkegul-mork);
+    padding: 2rem 0 1.5rem;
+  }
+
+  .karrusel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 1rem 1.5rem;
+  }
+
+  .karrusel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    scroll-snap-align: center;
+    flex: 0 0 75vw;
+    max-width: 280px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .card-indre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card.aaben .card-indre {
+    transform: rotateY(180deg);
+  }
+
+  .forside,
+  .bagside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: var(--solsikkegul-lys);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .forside p {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .bagside {
+    transform: rotateY(180deg);
+  }
+
+  .bagside p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .prikker {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .prik {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--solsikkegul-lys);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .prik.aktiv {
+    background-color: #c47f00;
+    transform: scale(1.3);
+  }
+
+  @media (min-width: 1024px) {
+    .kort-karrusel {
+      margin-top: 5rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+    }
+
+    .card {
+      flex: 0 0 220px;
+      max-width: 220px;
+      height: 280px;
+    }
+  }
+</style>
+
+<script define:vars={{ karruselId, prikId }}>
+  const karrusel = document.getElementById(karruselId);
+  const prikker = document.querySelectorAll(`#${prikId} .prik`);
+  const cards = karrusel.querySelectorAll(".card");
+
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("aaben");
+    });
+  });
+
+  prikker.forEach((prik, i) => {
+    prik.addEventListener("click", () => {
+      const card = cards[i];
+      card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    });
+  });
+
+  const opdaterPrik = () => {
+    const midt = karrusel.scrollLeft + karrusel.offsetWidth / 2;
+    let aktivIndex = 0;
+    cards.forEach((card, i) => {
+      const kortMidt = card.offsetLeft + card.offsetWidth / 2;
+      if (Math.abs(kortMidt - midt) < Math.abs(cards[aktivIndex].offsetLeft + cards[aktivIndex].offsetWidth / 2 - midt)) {
+        aktivIndex = i;
+      }
+    });
+    prikker.forEach((p, i) => {
+      p.classList.toggle("aktiv", i === aktivIndex);
+    });
+  };
+
+  karrusel.addEventListener("scroll", opdaterPrik);
+  opdaterPrik();
+</script>

@@ -3,9 +3,10 @@ interface Props {
   tekst: string;
   href?: string;
   type?: "button" | "submit";
+  popupId?: string;
 }
 
-const { tekst, href, type = "button" } = Astro.props;
+const { tekst, href, type = "button", popupId } = Astro.props;
 ---
 
 {
@@ -14,11 +15,22 @@ const { tekst, href, type = "button" } = Astro.props;
       {tekst}
     </a>
   ) : (
-    <button type={type} class="cta-knap">
+    <button type={type} class="cta-knap" data-popup={popupId}>
       {tekst}
     </button>
   )
 }
+
+<script>
+  document.querySelectorAll("[data-popup]").forEach((knap) => {
+    knap.addEventListener("click", () => {
+      const id = knap.getAttribute("data-popup");
+      if (id) {
+        document.getElementById(id)?.classList.add("aaben");
+      }
+    });
+  });
+</script>
 
 <style>
   .cta-knap {

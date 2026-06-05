@@ -1,8 +1,9 @@
 ---
-// CitatSektion.astro
+import CtaKnap from "./CtaKnap.astro";
 ---
 
 <section class="citat-sektion">
+  <div class="container">
   <div class="citat-kort">
     <!-- Gult papir øverst til venstre -->
     <img src="/images/collage/papir-gul.png" alt="" class="papir-gul" aria-hidden="true" />
@@ -20,7 +21,11 @@
 
     <!-- Hvidt papir nederst -->
     <img src="/images/collage/papir-hvid.png" alt="" class="papir-hvid" aria-hidden="true" />
+    <div class="knap-wrapper">
+      <CtaKnap tekst="Sådan bestiller du Dankort" popupId="popup" />
+    </div>
   </div>
+</div>
 </section>
 
 <style>
@@ -28,7 +33,7 @@
      MOBILE FIRST
      ===================== */
 
-.citat-sektion {
+  .citat-sektion {
     padding: 5rem 1rem 3rem;
     background-color: var(--hvid);
     overflow: hidden;
@@ -70,18 +75,13 @@
   }
 
   .citat-overskrift {
-    font-family: var(--font-body);
     font-size: 1.4rem;
     font-weight: 800;
-    color: var(--sort);
     line-height: 1.4;
   }
 
   .citat-tekst {
-    font-family: var(--font-body);
     font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--sort);
   }
 
   .kursiv {
@@ -103,6 +103,13 @@
     margin-left: -1rem;
     margin-top: -14rem;
     z-index: 1;
+  }
+
+  .knap-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.1rem;
+    white-space: nowrap;
   }
 
   /* =====================

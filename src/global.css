@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=UnifrakturMaguntia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=UnifrakturMaguntia&family=The+Girl+Next+Door&display=swap");
 
 :root {
   /* Primære farver */
@@ -18,6 +18,7 @@
   /* Fonte */
   --font-body: "Raleway", sans-serif;
   --font-display: "UnifrakturMaguntia", cursive;
+  --font-postit: "The Girl Next Door", cursive;
 }
 
 * {

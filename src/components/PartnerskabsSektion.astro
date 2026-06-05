@@ -1,26 +1,54 @@
 ---
+
 ---
 
 <section class="partnerskaber">
-  <div class="tekst">
-    <img src="/images/collage/papir-fersken.png" alt="" class="papir-fersken" />
-    <h2>Partnerskaber</h2>
-    <p>En række danske butikker og banker har valgt at være med i Dankort Øremærket. Det betyder at de donerer 1 øre oveni Dankorts øre, hver gang du betaler med Dankort hos dem. To øre pr. betaling og stadig gratis for dig.</p>
-  </div>
+  <div class="container">
+    <div class="indhold">
+      <div class="tekst">
+        <img src="/images/collage/papir-fersken.png" alt="" class="papir-fersken" aria-hidden="true" />
+        <h2>Partnerskaber</h2>
+        <p>En række danske butikker og banker har valgt at være med i Dankort Øremærket. Det betyder at de donerer 1 øre oveni Dankorts øre, hver gang du betaler med Dankort hos dem. To øre pr. betaling og stadig gratis for dig.</p>
+      </div>
 
-  <img src="/images/ui/post-it-partnerskaber.png" alt="Liste over partnere" class="post-it" />
+      <div class="post-it">
+        <p class="post-it-overskrift" aria-hidden="true">Partnerskaber</p>
+        <ul aria-label="Liste over partnere">
+          <li style="padding-left: 0.5rem">Emmerys</li>
+          <li style="padding-left: 2rem">Fælleskassen</li>
+          <li style="padding-left: 0rem">Faster Oikos</li>
+          <li style="padding-left: 1.5rem">Flowering</li>
+          <li style="padding-left: 0.8rem">Genbyg</li>
+          <li style="padding-left: 2.5rem">Kirppu</li>
+          <li style="padding-left: 0.3rem">Loppesupermarked</li>
+          <li style="padding-left: 1.2rem">Løberen</li>
+          <li style="padding-left: 2rem">Lollands Bank</li>
+          <li style="padding-left: 0.5rem">Merkur Andelskasse</li>
+          <li style="padding-left: 1.8rem">RedMaden</li>
+          <li style="padding-left: 0.2rem">Rise Sparekasse</li>
+          <li style="padding-left: 1rem">Sport 24</li>
+          <li style="padding-left: 2.2rem">Sportigan</li>
+        </ul>
+        <p class="flere">Flere partnere på vej</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
   .partnerskaber {
-    position: relative;
-    padding: 2rem 1rem;
     margin-top: 3rem;
+    padding: 2rem 0;
+  }
+
+  .indhold {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .tekst {
     position: relative;
-    margin-bottom: 2rem;
   }
 
   .papir-fersken {
@@ -47,42 +75,56 @@
   }
 
   .post-it {
-    width: 100%;
-    display: block;
+    font-family: var(--font-postit);
+    background-color: var(--solsikkegul-lys);
+    padding: 1.5rem 2rem;
+    transform: rotate(1.5deg);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.12);
+    align-self: flex-start;
+    margin: 0 auto;
+  }
+
+  .post-it ul {
+    list-style: none;
+    padding: 0;
+    line-height: 2;
+    font-size: 1rem;
+    color: var(--sort);
+  }
+
+  .post-it-overskrift {
+    font-family: var(--font-postit);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .flere {
+    font-family: var(--font-postit);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
   }
 
   @media (min-width: 1024px) {
     .partnerskaber {
+      margin-top: 5rem;
+      padding: 3rem 0;
+    }
+
+    .indhold {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0 3rem;
       align-items: center;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      margin-top: 5rem;
-    }
-
-    .tekst {
-      grid-column: 1 / 2;
-      grid-row: 1;
-      margin-bottom: 0;
-    }
-
-    .post-it {
-      grid-column: 2 / 3;
-      grid-row: 1;
-      width: 80%;
-      justify-self: center;
     }
 
     .papir-fersken {
-    position: absolute;
-    top: -100px;
-    left: -50px;
-    width: 60%;
-    z-index: 0;
-  }
+      top: -100px;
+      left: -50px;
+      width: 60%;
+    }
 
     h2 {
       font-size: 2.2rem;
@@ -90,6 +132,11 @@
 
     p {
       font-size: 1rem;
+    }
+
+    .post-it {
+      justify-self: center;
+      width: 80%;
     }
   }
 </style>

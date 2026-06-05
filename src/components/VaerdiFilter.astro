@@ -1,13 +1,13 @@
 ---
-// VaerdiFilter.astro
-// Dropdownfilter til overblik-siden
-// Samme struktur og CSS-klassenavne som bank-dropdown i BestilPopup.astro
-// Indsæt denne komponent øverst på overblik.astro
+import CtaKnap from "./CtaKnap.astro";
 ---
 
-<div class="bank-dropdown vaerdi-filter">
-  <button class="bank-knap" id="vaerdi-knap">Tjek værdierne ud</button>
-  <ul class="bank-liste" id="vaerdi-liste">
+<div class="vaerdi-filter">
+  <div class="knap-raekke">
+    <CtaKnap tekst="Tjek værdierne ud" id="vaerdi-knap" type="button" />
+    <span class="valgt-vaerdi" id="valgt-vaerdi"></span>
+  </div>
+  <ul class="vaerdi-liste" id="vaerdi-liste">
     <li><a href="#natur">Natur</a></li>
     <li><a href="#lokalt">Lokalt</a></li>
     <li><a href="#socialt">Socialt</a></li>
@@ -16,8 +16,9 @@
 </div>
 
 <script>
-  const vaerdiKnap = document.getElementById("vaerdi-knap");
+  const vaerdiKnap = document.querySelector("#vaerdi-knap");
   const vaerdiListe = document.getElementById("vaerdi-liste");
+  const valgtVaerdi = document.getElementById("valgt-vaerdi");
 
   vaerdiKnap?.addEventListener("click", () => {
     vaerdiListe?.classList.toggle("aaben");
@@ -30,8 +31,8 @@
       if (maal) {
         document.querySelector(maal)?.classList.remove("skjult");
       }
-      if (vaerdiKnap) {
-        vaerdiKnap.innerHTML = `Vælg værdi: <span class="valgt-tekst">${link.textContent}</span>`;
+      if (valgtVaerdi) {
+        valgtVaerdi.textContent = link.textContent;
       }
       vaerdiListe.classList.remove("aaben");
     });
@@ -39,61 +40,44 @@
 </script>
 
 <style is:global>
-  /*
-    Disse styles er identiske med bank-dropdown i BestilPopup.astro.
-    Hvis du allerede har dem i en global CSS-fil, kan du slette denne <style>-blok.
-  */
-
   .vaerdi-filter {
-    /* Ekstra margin så den ikke sidder klemt op ad kanten */
     margin: 1.5rem 1.25rem;
     max-width: 320px;
   }
 
-  /* Disse klassenavne er de samme som i BestilPopup — de genbruger samme stil */
-  .bank-dropdown {
-    margin-bottom: 2rem;
+  .knap-raekke {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .bank-knap {
-    width: auto;
-    min-width: 120px;
-    padding: 0.4rem 1rem;
-    border: 2px solid var(--sort, #111);
-    border-radius: 999px;
-    background: transparent;
-    font-family: var(--font-body, Arial, sans-serif);
-    font-weight: 800;
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-
-  .valgt-tekst {
-    color: var(--naturgroen);
-  }
-
-  .bank-liste {
+  .vaerdi-liste {
     display: none;
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
   }
 
-  .bank-liste.aaben {
+  .vaerdi-liste.aaben {
     display: block;
   }
 
-  .bank-liste li a {
+  .vaerdi-liste li a {
     display: block;
     padding: 0.4rem 0;
     font-weight: 800;
-    color: var(--sort, #111);
+    color: var(--sort);
     text-decoration: none;
     font-size: 0.95rem;
     border-bottom: 1px solid #e0e0e0;
   }
 
-  .bank-liste li a:hover {
+  .vaerdi-liste li a:hover {
     text-decoration: underline;
+  }
+
+  .valgt-vaerdi::before {
+    content: "→ ";
+    color: var(--naturgroen);
   }
 </style>

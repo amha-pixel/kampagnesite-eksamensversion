@@ -4,18 +4,19 @@ interface Props {
   href?: string;
   type?: "button" | "submit";
   popupId?: string;
+  id?: string;
 }
 
-const { tekst, href, type = "button", popupId } = Astro.props;
+const { tekst, href, type = "button", popupId, id } = Astro.props;
 ---
 
 {
   href ? (
-    <a href={href} class="cta-knap">
+    <a href={href} id={id} class="cta-knap">
       {tekst}
     </a>
   ) : (
-    <button type={type} class="cta-knap" data-popup={popupId}>
+    <button type={type} id={id} class="cta-knap" data-popup={popupId}>
       {tekst}
     </button>
   )

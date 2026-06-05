@@ -38,8 +38,12 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
         }
       </div>
 
-      <div class="prikker" id={prikId}>
-        {kort.map((_, i) => <button class="prik" data-index={i} aria-label={`Gå til kort ${i + 1}`} />)}
+      <div class="navigation">
+        <button class="pil venstre" id={`${karruselId}-venstre`} aria-label="Forrige kort">&#8592;</button>
+        <div class="prikker" id={prikId}>
+          {kort.map((_, i) => <button class="prik" data-index={i} aria-label={`Gå til kort ${i + 1}`} />)}
+        </div>
+        <button class="pil hoejre" id={`${karruselId}-hoejre`} aria-label="Næste kort">&#8594;</button>
       </div>
     </div>
   </div>
@@ -129,11 +133,18 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
     text-align: center;
   }
 
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0 0.5rem;
+  }
+
   .prikker {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1rem 0 0.5rem;
   }
 
   .prik {
@@ -154,6 +165,10 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
     transform: scale(1.3);
   }
 
+  .pil {
+    display: none;
+  }
+
   @media (min-width: 1024px) {
     .kort-karrusel {
       margin-top: 5rem;
@@ -167,6 +182,25 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
       flex: 0 0 220px;
       max-width: 220px;
       height: 280px;
+    }
+
+    .pil {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 2px solid var(--sort);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--sort);
+      transition: background-color 0.2s ease;
+    }
+
+    .pil:hover {
+      background-color: var(--solsikkegul-lys);
     }
   }
 </style>
@@ -205,4 +239,15 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
 
   karrusel.addEventListener("scroll", opdaterPrik);
   opdaterPrik();
+
+  const venstre = document.getElementById(`${karruselId}-venstre`);
+  const hoejre = document.getElementById(`${karruselId}-hoejre`);
+
+  venstre?.addEventListener("click", () => {
+    karrusel.scrollBy({ left: -240, behavior: "smooth" });
+  });
+
+  hoejre?.addEventListener("click", () => {
+    karrusel.scrollBy({ left: 240, behavior: "smooth" });
+  });
 </script>

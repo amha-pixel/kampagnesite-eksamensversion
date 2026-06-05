@@ -2,7 +2,7 @@
 import Layout from "../components/Layout.astro";
 import KortSektion from "../components/KortSektion.astro";
 import InfoSektion from "../components/InfoSektion.astro";
-import CitatSektion from "../components/CitatSektion.astro";
+import CitatKort from "../components/CitatKort.astro";
 import VaerdiFilter from "../components/VaerdiFilter.astro";
 import VaerdiSektion from "../components/VaerdiSektion.astro";
 import FordeleSektion from "../components/FordeleSektion.astro";
@@ -11,7 +11,12 @@ import FordeleSektion from "../components/FordeleSektion.astro";
 <Layout title="Dankort Øremærket – Overblik">
   <KortSektion />
   <InfoSektion />
-  <CitatSektion />
+  <CitatKort
+    overskrift="Kræver din livssituation også et nyt kort?"
+    tekst1="28-årige Daniella valgte at bestille et Dankort i sin bank, fordi hun og manden fik deleøkonomi, hun blev mor og de købte en ejerbolig."
+    citat='"Livet som mor er hektisk. Jeg havde pludselig for meget ansvar til at mit kort kunne blive afvist, når jeg var ude at handle, fordi jeg havde overset en udgift."'
+    tekst2="Nu behøver hun aldrig stresse over, om hendes kort bliver afvist — heller ikke sidst på måneden."
+  />
   <div style="padding: 0 20px;">
     <h2>Hvilke værdier har Dankort <span class="display">Øremærket</span> egentlig?</h2>
     <VaerdiFilter />

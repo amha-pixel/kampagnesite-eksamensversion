@@ -1,5 +1,14 @@
 ---
 import CtaKnap from "./CtaKnap.astro";
+
+interface Props {
+  overskrift: string;
+  tekst1: string;
+  citat: string;
+  tekst2: string;
+}
+
+const { overskrift, tekst1, citat, tekst2 } = Astro.props;
 ---
 
 <section class="citat-sektion">
@@ -13,10 +22,10 @@ import CtaKnap from "./CtaKnap.astro";
 
       <!-- Tekst ovenpå -->
       <div class="citat-indhold">
-        <p class="citat-overskrift">Har du også brug for økonomisk støtte sidst på måneden?</p>
-        <p class="citat-tekst">I nogle situationer er det fornuftigt at kunne trække over.</p>
-        <p class="citat-tekst kursiv">23-årige Laura valgte at bestille et Dankort i sin bank, så hun undgik at bekymre sig om sin tank-op aftale.</p>
-        <p class="citat-tekst">Nu kan Laura bekymringsfrit rejse med offentlig transport – også sidst på måneden.</p>
+        <p class="citat-overskrift">{overskrift}</p>
+        <p class="citat-tekst">{tekst1}</p>
+        <p class="citat-tekst kursiv">{citat}</p>
+        <p class="citat-tekst">{tekst2}</p>
       </div>
 
       <!-- Hvidt papir nederst -->
@@ -55,11 +64,11 @@ import CtaKnap from "./CtaKnap.astro";
   }
 
   /* Hvidt papirstykke — bagved teksten */
-  .papir-hvid {
+  .papirstykke-hvid {
     position: absolute;
-    top: 2rem;
-    left: -1rem;
-    width: 130%;
+    top: 6rem;
+    left: -8%;
+    width: 160%;
     height: auto;
     z-index: 0;
   }
@@ -86,15 +95,6 @@ import CtaKnap from "./CtaKnap.astro";
 
   .kursiv {
     font-style: italic;
-  }
-
-  .papirstykke-hvid {
-    position: absolute;
-    top: 6rem;
-    left: -8%;
-    width: 160%;
-    height: auto;
-    z-index: 0;
   }
 
   .papir-hvid {
@@ -134,21 +134,21 @@ import CtaKnap from "./CtaKnap.astro";
     }
 
     .papirstykke-hvid {
-      width: 900px; /* fast størrelse uanset container */
-      top: -2rem; /* juster op/ned */
-      left: 15rem; /* juster venstre/højre */
+      width: 900px;
+      top: -2rem;
+      left: 15rem;
     }
 
     .papir-hvid {
       width: 300px;
-      margin-left: 60rem; /* juster venstre/højre */
-      margin-top: -14rem; /* juster op/ned */
+      margin-left: 60rem;
+      margin-top: -14rem;
     }
 
     .citat-indhold {
       padding: 3.5rem 2rem 5rem;
-      margin-left: 19rem; /* rykker teksten til højre */
-      margin-top: 0; /* rykker teksten op/ned */
+      margin-left: 19rem;
+      margin-top: 0;
     }
 
     .citat-overskrift {

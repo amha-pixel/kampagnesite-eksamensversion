@@ -3,10 +3,7 @@ import CtaKnap from "./CtaKnap.astro";
 ---
 
 <div class="vaerdi-filter">
-  <div class="knap-raekke">
-    <CtaKnap tekst="Tjek værdierne ud" id="vaerdi-knap" type="button" />
-    <span class="valgt-vaerdi" id="valgt-vaerdi"></span>
-  </div>
+  <CtaKnap tekst="Tjek værdierne ud" id="vaerdi-knap" type="button" />
   <ul class="vaerdi-liste" id="vaerdi-liste">
     <li><a href="#natur">Natur</a></li>
     <li><a href="#lokalt">Lokalt</a></li>
@@ -18,7 +15,6 @@ import CtaKnap from "./CtaKnap.astro";
 <script>
   const vaerdiKnap = document.querySelector("#vaerdi-knap");
   const vaerdiListe = document.getElementById("vaerdi-liste");
-  const valgtVaerdi = document.getElementById("valgt-vaerdi");
 
   vaerdiKnap?.addEventListener("click", () => {
     vaerdiListe?.classList.toggle("aaben");
@@ -31,9 +27,6 @@ import CtaKnap from "./CtaKnap.astro";
       if (maal) {
         document.querySelector(maal)?.classList.remove("skjult");
       }
-      if (valgtVaerdi) {
-        valgtVaerdi.textContent = link.textContent;
-      }
       vaerdiListe.classList.remove("aaben");
     });
   });
@@ -41,14 +34,9 @@ import CtaKnap from "./CtaKnap.astro";
 
 <style is:global>
   .vaerdi-filter {
-    margin: 1.5rem 1.25rem;
+    margin: 1.5rem 0;
     max-width: 320px;
-  }
-
-  .knap-raekke {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    padding-left: 1.25rem;
   }
 
   .vaerdi-liste {
@@ -74,11 +62,5 @@ import CtaKnap from "./CtaKnap.astro";
 
   .vaerdi-liste li a:hover {
     text-decoration: underline;
-  }
-
-  .valgt-vaerdi {
-    font-weight: 800;
-    color: var(--sort);
-    font-size: 1.4rem;
   }
 </style>

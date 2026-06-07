@@ -23,7 +23,7 @@ import KortKarrusel from "../components/KortKarrusel.astro";
   <BestilPopup />
 
   <section class="karrusel-sektion">
-    <h2 class="karrusel-overskrift">Klik på ét værdikort. <br/> Lær mere om <span class="display">Øremærkets</span> værdier</h2>
+    <h2 class="karrusel-overskrift">Klik på ét værdikort. <br /> Lær mere om <span class="display">Øremærkets</span> værdier</h2>
     <div class="karrusel">
       <VaerdiCard billede="/images/natursteder/natur-rapsmark.webp" overskrift="Øremærket" underoverskrift="og naturen" href="/overblik#natur" />
       <VaerdiCard billede="/images/natursteder/lokalmiljoe-landsby.webp" overskrift="Øremærket" underoverskrift="og lokalmiljøet" href="/overblik#lokalt" />
@@ -63,7 +63,7 @@ import KortKarrusel from "../components/KortKarrusel.astro";
 
   .karrusel {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 0 1rem;
@@ -83,15 +83,23 @@ import KortKarrusel from "../components/KortKarrusel.astro";
   @media (min-width: 1024px) {
     .karrusel-sektion {
       max-width: 1440px;
-      margin-top: 6rem;
-    margin-bottom: 8rem;
-      padding: 2rem;
+      margin: 6rem auto 8rem;
+      padding: 1.8rem;
     }
 
     .karrusel {
       overflow-x: visible;
       justify-content: center;
       gap: 1rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .karrusel {
+      margin-top: 3rem;
+      overflow-x: visible;
+      justify-content: center;
+      gap: 2.5rem;
     }
   }
 </style>

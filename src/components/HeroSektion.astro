@@ -4,12 +4,10 @@
 
 <section class="hero">
   <div class="video-wrapper">
-    <!-- Mobilvideo: vises kun på mobil -->
     <video autoplay muted loop playsinline preload="none" id="hero-video-mobil" class="hero-video mobil-video">
       <source src="/video/hero-mobil.mp4" type="video/mp4" />
     </video>
 
-    <!-- Desktopvideo: vises kun på desktop -->
     <video autoplay muted loop playsinline preload="none" id="hero-video-desktop" class="hero-video desktop-video">
       <source src="/video/hero-desktop.mp4" type="video/mp4" />
     </video>
@@ -22,7 +20,19 @@
       <button class="video-knap" id="play-pause" aria-label="Pause video">
         <span id="ikon">⏸</span>
       </button>
-      <button class="video-knap" id="lyd-knap" aria-label="Slå lyd til"> 🔇 </button>
+
+      <button class="video-knap lyd-knap" id="lyd-knap" aria-label="Slå lyd til">
+        <!-- Muted-ikon: vises som standard (video starter muted) -->
+        <svg id="ikon-muted" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="currentColor">
+          <path d="m616-320-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm-496-40v-240h160l200-200v640L280-360H120Zm280-246-86 86H200v80h114l86 86v-252ZM300-480Z"></path>
+        </svg>
+        <!-- Lyd-til-ikon: skjult som standard -->
+        <svg id="ikon-lyd" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="currentColor" style="display:none;">
+          <path
+            d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"
+          ></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
@@ -57,27 +67,22 @@
     display: block;
   }
 
-  /* Mobil: vis 9:16, skjul 16:9 */
   .mobil-video {
     display: block;
   }
-
   .desktop-video {
     display: none;
   }
 
-  /* Desktop: vis 16:9, skjul 9:16 */
   @media (min-width: 1024px) {
     .mobil-video {
       display: none;
     }
-
     .desktop-video {
       display: block;
     }
   }
 
-  /* Knapper i højre side i bunden */
   .video-kontroller {
     position: absolute;
     bottom: 1.5rem;
@@ -90,20 +95,32 @@
   .video-knap {
     background: transparent;
     border: 2px solid var(--solsikkegul-mork);
-    color: var(--solsikkegul-mork);
+    color: var(--solsikkegul-mork); /* styrer fill="currentColor" på SVG */
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    font-size: 1.2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  /* Aktiv tilstand — når lyd er slået til */
+  .video-knap.lyd-aktiv {
+    color: var(--solsikkegul-aktiv);
+    border-color: var(--solsikkegul-aktiv);
+  }
+
+  .video-knap.spiller-aktiv {
+    color: var(--solsikkegul-aktiv);
+    border-color: var(--solsikkegul-aktiv);
   }
 </style>
 
 <script>
-  // Find den aktive video baseret på skærmbredde
   function getAktivVideo(): HTMLVideoElement {
     const erDesktop = window.matchMedia("(min-width: 1024px)").matches;
     return document.getElementById(erDesktop ? "hero-video-desktop" : "hero-video-mobil") as HTMLVideoElement;
@@ -112,15 +129,19 @@
   const playKnap = document.getElementById("play-pause");
   const ikon = document.getElementById("ikon");
   const lydKnap = document.getElementById("lyd-knap");
+  const ikonMuted = document.getElementById("ikon-muted");
+  const ikonLyd = document.getElementById("ikon-lyd");
 
   playKnap?.addEventListener("click", () => {
     const video = getAktivVideo();
     if (video.paused) {
       video.play();
       if (ikon) ikon.textContent = "⏸";
+      playKnap.classList.remove("spiller-aktiv"); // spiller → mørk
     } else {
       video.pause();
       if (ikon) ikon.textContent = "▶";
+      playKnap.classList.add("spiller-aktiv"); // pauset → brun
     }
   });
 
@@ -128,11 +149,15 @@
     const video = getAktivVideo();
     if (video.muted) {
       video.muted = false;
-      lydKnap!.textContent = "🔊";
+      ikonMuted!.style.display = "none";
+      ikonLyd!.style.display = "block";
+      lydKnap!.classList.add("lyd-aktiv");
       lydKnap!.setAttribute("aria-label", "Slå lyd fra");
     } else {
       video.muted = true;
-      lydKnap!.textContent = "🔇";
+      ikonMuted!.style.display = "block";
+      ikonLyd!.style.display = "none";
+      lydKnap!.classList.remove("lyd-aktiv");
       lydKnap!.setAttribute("aria-label", "Slå lyd til");
     }
   });

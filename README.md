@@ -12,10 +12,10 @@ Dette er version 2 af kampagnesitet, udviklet som en revideret eksamensversion. 
 
 ## Branch-strategi
 
-| Branch | Formål |
-|---|---|
-| `main` | Produktionsversion — deployet på Netlify |
-| `dev` | Udviklingsgren — merget ind i `main` ved deploy |
+| Branch | Formål                                          |
+| ------ | ----------------------------------------------- |
+| `main` | Produktionsversion — deployet på Netlify        |
+| `dev`  | Udviklingsgren — merget ind i `main` ved deploy |
 
 ## Tech stack
 
@@ -38,27 +38,31 @@ Dette er version 2 af kampagnesitet, udviklet som en revideret eksamensversion. 
 │       └── hero-mobil.mp4
 ├── src/
 │   ├── components/
+│   │   ├── Accordeon.astro
+│   │   ├── BestilPopup.astro
+│   │   ├── CitatKort.astro
 │   │   ├── CtaKnap.astro
-│   │   ├── SekundaerKnap.astro
+│   │   ├── Footer.astro
+│   │   ├── Header.astro
 │   │   ├── HeroSektion.astro
 │   │   ├── HvadErSektion.astro
-│   │   ├── SpoergsmaalSektion.astro
-│   │   ├── SamarbejdsSektion.astro
-│   │   ├── PartnerskabsSektion.astro
-│   │   ├── QandASektion.astro
-│   │   ├── FordeleSektion.astro
+│   │   ├── InfoSektion.astro
+│   │   ├── KortKarrusel.astro
 │   │   ├── KortSektion.astro
-│   │   ├── BestilPopup.astro
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   └── Layout.astro
-│   └── pages/
-│       ├── index.astro
-│       ├── overblik.astro
-│       └── natursted/
-│           └── [slug].astro
-└── src/styles/
-    └── global.css
+│   │   ├── Layout.astro
+│   │   ├── PartnerskabsSektion.astro
+│   │   ├── SamarbejdsSektion.astro
+│   │   ├── VaerdiCard.astro
+│   │   ├── VaerdiFilter.astro
+│   │   └── VaerdiSektion.astro
+│   ├── lib/
+│   │   └── supabase.js
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── overblik.astro
+│   │   └── natursted/
+│   │       └── [slug].astro
+│   └── global.css
 ```
 
 ## Kom i gang lokalt
@@ -104,31 +108,31 @@ Projektet bruger Supabase med en `natursteder` tabel der indeholder 20 fiktive n
 
 ### Tabelstruktur: `natursteder`
 
-| Kolonne | Type | Påkrævet | Beskrivelse |
-|---|---|---|---|
-| `id` | bigint | ja | Primærnøgle, auto-genereret |
-| `titel` | text | nej | Naturstedets navn |
-| `region` | text | nej | Dansk region |
-| `underrubrik` | text | nej | Kort beskrivelse til kort og listevisning |
-| `brodtekst` | text | nej | Længere beskrivende tekst |
-| `unik_natur` | text | nej | Hvad gør stedet unikt naturmæssigt |
-| `dankort_hjaelper` | text | nej | Hvordan Dankort-midler støtter stedet |
-| `naturoplevelser` | text | nej | Oplevelser på stedet |
-| `natur_fakta` | text | nej | Faktaboks-indhold |
-| `areal` | text | nej | Størrelse i relevant enhed |
-| `oekonomi` | text | nej | Økonomi og finansiering |
-| `partnere` | text | nej | Samarbejdspartnere |
-| `created_at` | timestamp with time zone | nej | Auto-genereret ved oprettelse |
-| `slug` | text | nej | URL-venligt navn til `[slug].astro` routing |
-| `koordinat_x` | numeric | nej | Longitude til SVG-kort |
-| `koordinat_y` | numeric | nej | Latitude til SVG-kort |
-| `billede` | text | nej | Filnavn til billede i Supabase Storage |
+| Kolonne            | Type                     | Påkrævet | Beskrivelse                                 |
+| ------------------ | ------------------------ | -------- | ------------------------------------------- |
+| `id`               | bigint                   | ja       | Primærnøgle, auto-genereret                 |
+| `titel`            | text                     | nej      | Naturstedets navn                           |
+| `region`           | text                     | nej      | Dansk region                                |
+| `underrubrik`      | text                     | nej      | Kort beskrivelse til kort og listevisning   |
+| `brodtekst`        | text                     | nej      | Længere beskrivende tekst                   |
+| `unik_natur`       | text                     | nej      | Hvad gør stedet unikt naturmæssigt          |
+| `dankort_hjaelper` | text                     | nej      | Hvordan Dankort-midler støtter stedet       |
+| `naturoplevelser`  | text                     | nej      | Oplevelser på stedet                        |
+| `natur_fakta`      | text                     | nej      | Faktaboks-indhold                           |
+| `areal`            | text                     | nej      | Størrelse i relevant enhed                  |
+| `oekonomi`         | text                     | nej      | Økonomi og finansiering                     |
+| `partnere`         | text                     | nej      | Samarbejdspartnere                          |
+| `created_at`       | timestamp with time zone | nej      | Auto-genereret ved oprettelse               |
+| `slug`             | text                     | nej      | URL-venligt navn til `[slug].astro` routing |
+| `koordinat_x`      | numeric                  | nej      | Longitude til SVG-kort                      |
+| `koordinat_y`      | numeric                  | nej      | Latitude til SVG-kort                       |
+| `billede`          | text                     | nej      | Filnavn til billede i Supabase Storage      |
 
 Billeder ligger i Supabase Storage — opret en bucket kaldet `billeder` med public adgang og upload billeder med filnavne der matcher `billede`-kolonnen.
 
 ## Bemærkning om AI-genereret indhold
 
-Videoindholdet i hero-sektionen, billeder på sitet og i supabase storage er udelukkende produceret i uddannelsesøjemed med generativ AI i Adobe Firefly og må ikke anvendes kommercielt eller reproduceres. De portrætterede personer i video og billedmateriale på sitet er AI-genereret. 
+Videoindholdet i hero-sektionen, billeder på sitet og i supabase storage er udelukkende produceret i uddannelsesøjemed med generativ AI i Adobe Firefly og må ikke anvendes kommercielt eller reproduceres. De portrætterede personer i video og billedmateriale på sitet er AI-genereret.
 
 ## Licens
 

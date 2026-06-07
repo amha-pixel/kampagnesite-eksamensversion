@@ -12,7 +12,7 @@ import KortKarrusel from "../components/KortKarrusel.astro";
 
 <Layout title="Dankort Øremærket">
   <HeroSektion />
-  
+
   <CitatKort
     overskrift="Har du også brug for økonomisk støtte sidst på måneden?"
     tekst1="I nogle situationer er det fornuftigt at kunne trække over."
@@ -23,6 +23,7 @@ import KortKarrusel from "../components/KortKarrusel.astro";
   <BestilPopup />
 
   <section class="karrusel-sektion">
+    <h2 class="karrusel-overskrift">Klik på ét værdikort. <br/> Lær mere om <span class="display">Øremærkets</span> værdier</h2>
     <div class="karrusel">
       <VaerdiCard billede="/images/natursteder/natur-rapsmark.webp" overskrift="Øremærket" underoverskrift="og naturen" href="/overblik#natur" />
       <VaerdiCard billede="/images/natursteder/lokalmiljoe-landsby.webp" overskrift="Øremærket" underoverskrift="og lokalmiljøet" href="/overblik#lokalt" />
@@ -34,27 +35,29 @@ import KortKarrusel from "../components/KortKarrusel.astro";
   <SamarbejdsSektion />
   <PartnerskabsSektion />
   <KortKarrusel
-  overskrift="Det folk bliver ved med at spørge om"
-  karruselId="faq-karrusel"
-  prikId="faq-prikker"
-  kort={[
-    { forside: "Er det mine egne penge der doneres?", bagside: "Nej. Dankort donerer selv 1 øre pr. betaling — ikke dig. Det koster dig ingenting ekstra." },
-    { forside: "Hvad er Den Danske Naturfond?", bagside: "En privat fond stiftet i 2015, der køber, beskytter og genopretter natur i hele Danmark. De arbejder uafhængigt og har ingen særlige interesser. Pengene går ubeskåret til natur." },
-    { forside: "Opfordrer det til merforbrug?", bagside: "Nej. Idéen er at vælge Dankort når du alligevel skal betale — ikke at bruge flere penge." },
-    { forside: "Hvad hvis jeg ikke vil støtte Den Danske Naturfond?", bagside: "Så vælger du bare en anden betalingsform. Simpelt." },
-    { forside: "Kan jeg se hvilken natur mine betalinger støtter?", bagside: "Ja. På Danmarkskortet kan du se alle de naturområder Dankort Øremærket har bidraget til — fra Falster til Jammerbugten." },
-    { forside: "Donerer butikkerne også?", bagside: "Nogle gør. Partnere i Dankort Øremærket donerer 1 øre oveni Dankorts øre — så én betaling kan blive til 2 eller 3 øre." },
-    { forside: "Er der dyr i naturområderne?", bagside: "Ja. Heste og kvæg afgræsser flere af områderne — det skaber mere mangfoldig natur. Naturfonden ejer ikke selv dyrene, men indgår aftaler med lokale dyreholdere." },
-    { forside: "Hvad gør Naturfonden konkret med pengene?", bagside: "De lader vand flyde frit, fjerner invasive planter, forvandler marker til blomsterenge og lader gamle træer stå. Ingen fancy løsninger — bare mere vild natur." },
-    { forside: "Hvad er forskellen på Dankort og Visa/Mastercard?", bagside: "Dankort er dansk, gratis at bruge og har gebyrer fastsat ved lov. Visa og Mastercard er internationale — og butikkerne betaler betydeligt mere for at modtage dem." },
-    { forside: "Kan jeg bruge Dankort på mobilen?", bagside: "Ja. Danske Bank tilbyder Dankort i Apple Pay. Bruger du en anden bank, betaler du sandsynligvis med Visa- eller Mastercard-delen af dit kort når du tapper med mobilen." },
-  ]}
-/>
+    overskrift="Det folk bliver ved med at spørge om"
+    karruselId="faq-karrusel"
+    prikId="faq-prikker"
+    kort={[
+      { forside: "Er det mine egne penge der doneres?", bagside: "Nej. Dankort donerer selv 1 øre pr. betaling — ikke dig. Det koster dig ingenting ekstra." },
+      { forside: "Hvad er Den Danske Naturfond?", bagside: "En privat fond stiftet i 2015, der køber, beskytter og genopretter natur i hele Danmark. De arbejder uafhængigt og har ingen særlige interesser. Pengene går ubeskåret til natur." },
+      { forside: "Opfordrer det til merforbrug?", bagside: "Nej. Idéen er at vælge Dankort når du alligevel skal betale — ikke at bruge flere penge." },
+      { forside: "Hvad hvis jeg ikke vil støtte Den Danske Naturfond?", bagside: "Så vælger du bare en anden betalingsform. Simpelt." },
+      { forside: "Kan jeg se hvilken natur mine betalinger støtter?", bagside: "Ja. På Danmarkskortet kan du se alle de naturområder Dankort Øremærket har bidraget til — fra Falster til Jammerbugten." },
+      { forside: "Donerer butikkerne også?", bagside: "Nogle gør. Partnere i Dankort Øremærket donerer 1 øre oveni Dankorts øre — så én betaling kan blive til 2 eller 3 øre." },
+      { forside: "Er der dyr i naturområderne?", bagside: "Ja. Heste og kvæg afgræsser flere af områderne — det skaber mere mangfoldig natur. Naturfonden ejer ikke selv dyrene, men indgår aftaler med lokale dyreholdere." },
+      { forside: "Hvad gør Naturfonden konkret med pengene?", bagside: "De lader vand flyde frit, fjerner invasive planter, forvandler marker til blomsterenge og lader gamle træer stå. Ingen fancy løsninger — bare mere vild natur." },
+      { forside: "Hvad er forskellen på Dankort og Visa/Mastercard?", bagside: "Dankort er dansk, gratis at bruge og har gebyrer fastsat ved lov. Visa og Mastercard er internationale — og butikkerne betaler betydeligt mere for at modtage dem." },
+      { forside: "Kan jeg bruge Dankort på mobilen?", bagside: "Ja. Danske Bank tilbyder Dankort i Apple Pay. Bruger du en anden bank, betaler du sandsynligvis med Visa- eller Mastercard-delen af dit kort når du tapper med mobilen." },
+    ]}
+  />
 </Layout>
 
 <style>
   .karrusel-sektion {
     padding: 2rem 0;
+    margin-top: 6rem;
+    margin-bottom: 8rem;
     overflow: hidden;
   }
 
@@ -72,10 +75,16 @@ import KortKarrusel from "../components/KortKarrusel.astro";
     display: none;
   }
 
+  .karrusel-overskrift {
+    padding: 0 1.25rem;
+    margin-bottom: 1rem;
+  }
+
   @media (min-width: 1024px) {
     .karrusel-sektion {
       max-width: 1440px;
-      margin: 0 auto;
+      margin-top: 6rem;
+    margin-bottom: 8rem;
       padding: 2rem;
     }
 

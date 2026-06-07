@@ -52,9 +52,9 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     </div>
 
     <section class="accordeon">
-      <Accordeon titel="Unik natur" indhold={data.unik_natur} />
+      <Accordeon titel="Opdag den unikke natur" indhold={data.unik_natur} />
       <Accordeon titel="Sådan hjælper vi naturen" indhold={data.dankort_hjaelper} />
-      <Accordeon titel="Naturoplevelser" indhold={data.naturoplevelser} />
+      <Accordeon titel="Læs om naturoplevelserne" indhold={data.naturoplevelser} />
     </section>
 
     <a href="/overblik" class="tilbage-knap">

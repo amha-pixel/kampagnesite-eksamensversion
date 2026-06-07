@@ -3,7 +3,15 @@ const { titel, indhold } = Astro.props;
 ---
 
 <details>
-  <summary>{titel}</summary>
+  <summary>
+    <span>{titel}</span>
+    <svg class="pil pil-ned" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <path d="M480-360 280-560h400L480-360Z"></path>
+    </svg>
+    <svg class="pil pil-op" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <path d="m280-400 200-200 200 200H280Z"></path>
+    </svg>
+  </summary>
   <p>{indhold}</p>
 </details>
 
@@ -11,6 +19,7 @@ const { titel, indhold } = Astro.props;
   details {
     border-radius: 999px;
     overflow: visible;
+    width: 100%;
   }
 
   summary {
@@ -23,6 +32,15 @@ const { titel, indhold } = Astro.props;
     cursor: pointer;
     list-style: none;
     border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  summary span {
+    flex: 1;
   }
 
   summary::-webkit-details-marker {
@@ -37,6 +55,7 @@ const { titel, indhold } = Astro.props;
   details[open] {
     border: 2px solid var(--limegroen-lys);
     border-radius: 1rem;
+    background-color: rgba(161, 234, 172, 0.2);
   }
 
   details p {
@@ -46,9 +65,22 @@ const { titel, indhold } = Astro.props;
     line-height: 1.6;
   }
 
-  details[open] {
-  border: 2px solid var(--limegroen-lys);
-  border-radius: 1rem;
-  background-color: rgba(161, 234, 172, 0.2);
-}
+  .pil {
+    flex-shrink: 0;
+    color: var(--limegroen-mork);
+  }
+
+  .pil-ned {
+    display: block;
+  }
+  .pil-op {
+    display: none;
+  }
+
+  :global(details[open]) .pil-ned {
+    display: none;
+  }
+  :global(details[open]) .pil-op {
+    display: block;
+  }
 </style>

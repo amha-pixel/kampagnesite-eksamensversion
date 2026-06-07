@@ -3,8 +3,16 @@ import CtaKnap from "./CtaKnap.astro";
 ---
 
 <div class="vaerdi-filter">
-  <CtaKnap tekst="Tjek værdierne ud" id="vaerdi-knap" type="button" />
-  <ul class="vaerdi-liste" id="vaerdi-liste">
+  <CtaKnap tekst="Tjek værdierne ud" id="vaerdi-knap" type="button" aria-expanded="false" aria-controls="vaerdi-liste">
+    <svg class="pil pil-ned" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
+      <path d="M480-360 280-560h400L480-360Z"></path>
+    </svg>
+    <svg class="pil pil-op" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true">
+      <path d="m280-400 200-200 200 200H280Z"></path>
+    </svg>
+  </CtaKnap>
+
+  <ul class="vaerdi-liste" id="vaerdi-liste" role="list">
     <li><a href="#natur">Natur</a></li>
     <li><a href="#lokalt">Lokalt</a></li>
     <li><a href="#socialt">Socialt</a></li>
@@ -17,26 +25,49 @@ import CtaKnap from "./CtaKnap.astro";
   const vaerdiListe = document.getElementById("vaerdi-liste");
 
   vaerdiKnap?.addEventListener("click", () => {
-    vaerdiListe?.classList.toggle("aaben");
+    const erAaben = vaerdiListe?.classList.toggle("aaben");
+    vaerdiKnap.setAttribute("aria-expanded", String(erAaben));
   });
 
   vaerdiListe?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
       document.querySelectorAll(".vaerdi-sektion").forEach((s) => s.classList.add("skjult"));
       const maal = link.getAttribute("href");
-      if (maal) {
-        document.querySelector(maal)?.classList.remove("skjult");
-      }
-      vaerdiListe.classList.remove("aaben");
+      if (maal) document.querySelector(maal)?.classList.remove("skjult");
     });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!(e.target as HTMLElement)?.closest(".vaerdi-filter")) {
+      vaerdiListe?.classList.remove("aaben");
+      vaerdiKnap?.setAttribute("aria-expanded", "false");
+    }
   });
 </script>
 
 <style is:global>
   .vaerdi-filter {
     margin: 1.5rem 0;
-    max-width: 320px;
-    padding-left: 1.25rem;
+  }
+
+  .vaerdi-filter .pil {
+    color: var(--limegroen-mork);
+    flex-shrink: 0;
+  }
+
+  .vaerdi-filter .pil-ned {
+    display: block;
+  }
+  .vaerdi-filter .pil-op {
+    display: none;
+  }
+
+  .vaerdi-filter .cta-knap[aria-expanded="true"] .pil-ned {
+    display: none;
+  }
+  .vaerdi-filter .cta-knap[aria-expanded="true"] .pil-op {
+    display: block;
   }
 
   .vaerdi-liste {
@@ -44,6 +75,7 @@ import CtaKnap from "./CtaKnap.astro";
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
+    max-width: 320px;
   }
 
   .vaerdi-liste.aaben {
@@ -54,10 +86,7 @@ import CtaKnap from "./CtaKnap.astro";
     display: block;
     padding: 0.4rem 0;
     font-weight: 800;
-    color: var(--sort);
-    text-decoration: none;
     font-size: 0.95rem;
-    border-bottom: 1px solid #e0e0e0;
   }
 
   .vaerdi-liste li a:hover {

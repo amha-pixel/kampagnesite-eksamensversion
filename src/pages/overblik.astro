@@ -17,10 +17,12 @@ import KortKarrusel from "../components/KortKarrusel.astro";
     citat='"Livet som mor er hektisk. Jeg havde pludselig for meget ansvar til at mit kort kunne blive afvist, når jeg var ude at handle, fordi jeg havde overset en udgift."'
     tekst2="Nu behøver hun aldrig stresse over, om hendes kort bliver afvist — heller ikke sidst på måneden."
   />
-  <div style="padding: 0 20px;">
-    <h2>Hvilke værdier har Dankort <span class="display">Øremærket</span> egentlig?</h2>
-    <VaerdiFilter />
-  </div>
+  <section class="vaerdi-overskrift-sektion">
+    <div class="container">
+      <h2>Hvilke værdier har Dankort <span class="display">Øremærket</span> egentlig?</h2>
+      <VaerdiFilter />
+    </div>
+  </section>
   <VaerdiSektion />
   <KortKarrusel
     overskrift="Derfor giver det mening. Klik og se alle fordelene"
@@ -43,6 +45,12 @@ import KortKarrusel from "../components/KortKarrusel.astro";
     ]}
   />
 </Layout>
+
+<style>
+  .vaerdi-overskrift-sektion {
+    padding: 2rem 0 0;
+  }
+</style>
 
 <script>
   window.addEventListener("DOMContentLoaded", () => {

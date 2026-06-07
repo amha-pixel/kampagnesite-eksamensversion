@@ -13,11 +13,13 @@ const { tekst, href, type = "button", popupId, id } = Astro.props;
 {
   href ? (
     <a href={href} id={id} class="cta-knap">
-      {tekst}
+      <span>{tekst}</span>
+      <slot />
     </a>
   ) : (
     <button type={type} id={id} class="cta-knap" data-popup={popupId}>
-      {tekst}
+      <span>{tekst}</span>
+      <slot />
     </button>
   )
 }
@@ -36,6 +38,7 @@ const { tekst, href, type = "button", popupId, id } = Astro.props;
 <style>
   .cta-knap {
     display: inline-flex;
+    gap: 0.25rem;
     width: auto;
     align-items: center;
     justify-content: center;

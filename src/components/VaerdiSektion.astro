@@ -9,7 +9,7 @@ const vaerdier = [
       "830.000 kvadratmeter ny vild natur om året. Ikke fordi nogen har doneret en stor check, men fordi danskere millioner af gange har købt dagligvarer, betalt husleje og hentet takeaway med Dankort. Det er det vildeste fællesskabsprojekt Danmark har set i lang tid.",
     ],
     billede: "/images/natursteder/natur-rapsmark.webp",
-    billedeAlt: "Dansk natur",
+    billedeAlt: "Ung kvinde med spredte arme foran en rapsmark i modlys — et billede på forbindelsen mellem danskere og dansk natur",
   },
   {
     slug: "lokalt",
@@ -19,7 +19,7 @@ const vaerdier = [
       "Så når du swiper med Dankort hos din lokale bager, giver du ham faktisk en lille håndsrækning han aldrig ville bede dig om. Og de butikker der er partnere i Dankort Øremærket, donerer oven i købet en øre til dansk natur hver gang du handler hos dem.",
     ],
     billede: "/images/natursteder/lokalmiljoe-landsby.webp",
-    billedeAlt: "Lokalt dansk miljø",
+    billedeAlt: "Gågade i dansk provinsby med lokale butikker og en forbipasserende mand",
   },
   {
     slug: "socialt",
@@ -28,7 +28,7 @@ const vaerdier = [
       "De fedeste ting sker ikke fordi én person beslutter det. De sker fordi alle gør det. Dankort Øremærket er blevet en social bevægelse blandt unge danskere. Ikke fordi nogen har bedt dem om det — men fordi det giver mening. Og fordi Tobias Rahim synes det er fedt.",
     ],
     billede: "/images/natursteder/faellesskab-badebro.webp",
-    billedeAlt: "Sociale fællesskaber",
+    billedeAlt: "Unge danskere hygger sig på en badebro en sommerdag — et billede på at være social",
   },
   {
     slug: "faelles",
@@ -38,7 +38,7 @@ const vaerdier = [
       "Dankort Øremærket er ikke noget du melder dig ind i. Det er et fællesskab du er en del af, hver gang du betaler.",
     ],
     billede: "/images/natursteder/faellesskab-picnic.webp",
-    billedeAlt: "Fællesskab i naturen",
+    billedeAlt: "Vennegruppe på picnic i et hyggelig dansk sommerlandskab",
   },
 ];
 ---
@@ -54,7 +54,7 @@ const vaerdier = [
       </div>
 
       <div class="billede-wrapper">
-        <img src={v.billede} alt={v.billedeAlt} class="vaerdi-billede" />
+        <img src={v.billede} alt={v.billedeAlt} class="vaerdi-billede" loading={index === 0 ? "eager" : "lazy"}/>
         <img src="/images/ui/dankort-icon.svg" alt="" class="dankort-overlay" aria-hidden="true" />
       </div>
 
@@ -167,10 +167,6 @@ const vaerdier = [
 
   .skjult {
     display: none;
-  }
-
-  .vaerdi-tekst + .vaerdi-tekst {
-    margin-top: 1rem;
   }
 
   @media (min-width: 1024px) {

@@ -1,33 +1,37 @@
 ---
-
+const partnere = [
+  { navn: "Emmerys", indryk: 0.5 },
+  { navn: "Fælleskassen", indryk: 2 },
+  { navn: "Faster Oikos", indryk: 0 },
+  { navn: "Flowering", indryk: 1.5 },
+  { navn: "Genbyg", indryk: 0.8 },
+  { navn: "Kirppu", indryk: 2.5 },
+  { navn: "Loppesupermarked", indryk: 0.3 },
+  { navn: "Løberen", indryk: 1.2 },
+  { navn: "Lollands Bank", indryk: 2 },
+  { navn: "Merkur Andelskasse", indryk: 0.5 },
+  { navn: "RedMaden", indryk: 1.8 },
+  { navn: "Rise Sparekasse", indryk: 0.2 },
+  { navn: "Sport 24", indryk: 1 },
+  { navn: "Sportigan", indryk: 2.2 },
+];
 ---
 
-<section class="partnerskaber">
+<section class="partnerskaber" aria-labelledby="partnerskaber-titel">
   <div class="container">
     <div class="indhold">
       <div class="tekst">
-        <img src="/images/collage/papir-fersken.png" alt="" class="papir-fersken" aria-hidden="true" />
-        <h2>Partnerskaber</h2>
-        <p>En række danske butikker og banker har valgt at være med i Dankort Øremærket. Det betyder at de donerer 1 øre oveni Dankorts øre, hver gang du betaler med Dankort hos dem. To øre pr. betaling og stadig gratis for dig.</p>
+        <img src="/images/collage/papir-fersken.png" alt="" class="papir-fersken" aria-hidden="true" role="presentation" pointer-events="none" />
+        <h2 id="partnerskaber-titel" class="partnerskaber-titel">Partnerskaber</h2>
+        <p class="partnerskaber-tekst">
+          En række danske butikker og banker har valgt at være med i Dankort Øremærket. Det betyder at de donerer 1 øre oveni Dankorts øre, hver gang du betaler med Dankort hos dem. To øre pr. betaling og stadig gratis for dig.
+        </p>
       </div>
 
-      <div class="post-it">
+      <div class="post-it" role="complementary" aria-label="Liste over partnerbutikker og -banker">
         <p class="post-it-overskrift" aria-hidden="true">Partnerskaber</p>
-        <ul aria-label="Liste over partnere">
-          <li style="padding-left: 0.5rem">Emmerys</li>
-          <li style="padding-left: 2rem">Fælleskassen</li>
-          <li style="padding-left: 0rem">Faster Oikos</li>
-          <li style="padding-left: 1.5rem">Flowering</li>
-          <li style="padding-left: 0.8rem">Genbyg</li>
-          <li style="padding-left: 2.5rem">Kirppu</li>
-          <li style="padding-left: 0.3rem">Loppesupermarked</li>
-          <li style="padding-left: 1.2rem">Løberen</li>
-          <li style="padding-left: 2rem">Lollands Bank</li>
-          <li style="padding-left: 0.5rem">Merkur Andelskasse</li>
-          <li style="padding-left: 1.8rem">RedMaden</li>
-          <li style="padding-left: 0.2rem">Rise Sparekasse</li>
-          <li style="padding-left: 1rem">Sport 24</li>
-          <li style="padding-left: 2.2rem">Sportigan</li>
+        <ul aria-label="Partnere i Dankort Øremærket">
+          {partnere.map((partner) => <li style={`padding-left: ${partner.indryk}rem`}>{partner.navn}</li>)}
         </ul>
         <p class="flere">Flere partnere på vej</p>
       </div>
@@ -57,17 +61,17 @@
     left: -20px;
     width: 60%;
     z-index: 0;
+    pointer-events: none;
   }
 
-  h2 {
+  .partnerskaber-titel {
     position: relative;
     z-index: 1;
     font-size: 1.8rem;
-    font-weight: 800;
     margin-bottom: 1rem;
   }
 
-  p {
+  .partnerskaber-tekst {
     position: relative;
     z-index: 1;
     font-size: 0.9rem;
@@ -126,11 +130,11 @@
       width: 60%;
     }
 
-    h2 {
+    .partnerskaber-titel {
       font-size: 2.2rem;
     }
 
-    p {
+    .partnerskaber-tekst {
       font-size: 1rem;
     }
 

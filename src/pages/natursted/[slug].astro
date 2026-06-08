@@ -5,44 +5,39 @@ import { supabase } from "../../lib/supabase.js";
 
 export async function getStaticPaths() {
   const { data, error } = await supabase.from("natursteder").select("slug");
-
   if (error) {
     console.log(error);
     return [];
   }
-
   return data.map((natursted) => ({
     params: { slug: natursted.slug },
   }));
 }
 
 const { slug } = Astro.params;
-
 const { data, error } = await supabase.from("natursteder").select("*").eq("slug", slug).single();
 ---
 
-<Layout title={data.titel}>
-
-  <div class="side-grid">
-
+<Layout title={data.titel} description={data.underrubrik}>
+  <main class="side-grid container">
     <div class="venstre">
-      <section class="hero">
-        <h1>{data.titel}</h1>
+      <section class="hero" aria-labelledby="natursted-titel">
+        <h1 id="natursted-titel">{data.titel}</h1>
         <p class="underrubrik">{data.underrubrik}</p>
       </section>
 
-      <section class="brodtekst">
+      <section class="brodtekst" aria-label="Beskrivelse">
         <p>{data.brodtekst}</p>
       </section>
     </div>
 
     <div class="hoejre">
-      <section class="billede-sektion">
-        <div class="gul-firkant"></div>
-        <img src={data.billede} alt={data.titel} class="naturbillede" />
+      <section class="billede-sektion" aria-label="Billede af naturstedet">
+        <div class="gul-firkant" aria-hidden="true"></div>
+        <img src={data.billede} alt={`Naturstedet ${data.titel}`} class="naturbillede" fetchpriority="high" width="800" height="600" />
       </section>
 
-      <section class="fakta">
+      <section class="fakta" aria-label="Faktaboks">
         <h2>Fakta</h2>
         <p><strong>Natur</strong><br />{data.natur_fakta}</p>
         <p><strong>Areal</strong><br />{data.areal}</p>
@@ -51,33 +46,25 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
       </section>
     </div>
 
-    <section class="accordeon">
+    <section class="accordeon" aria-label="Læs mere om naturstedet">
       <Accordeon titel="Opdag den unikke natur" indhold={data.unik_natur} />
       <Accordeon titel="Sådan hjælper vi naturen" indhold={data.dankort_hjaelper} />
       <Accordeon titel="Læs om naturoplevelserne" indhold={data.naturoplevelser} />
     </section>
 
-    <a href="/overblik" class="tilbage-knap">
-      <img src="/images/ui/pil-tilbage.svg" alt="" />
+    <a href="/overblik" class="tilbage-knap" aria-label="Tilbage til Danmarkskortet">
+      <img src="/images/ui/pil-tilbage.svg" alt="" aria-hidden="true" />
     </a>
-  </div>
-
-  </div>
-
+  </main>
 </Layout>
 
 <style>
   .hero {
     background-image: url("/images/collage/papirstykke-beige.png");
-    background-size: 80%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: -80px -20px;
-    padding: 2rem 1rem 1.5rem;
-  }
-
-  h1 {
-    font-size: 2.4rem;
-    margin-bottom: 0.5rem;
+    padding: 2rem 1rem 2rem;
   }
 
   .underrubrik {
@@ -102,7 +89,7 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     right: -30px;
     width: 80%;
     height: 80%;
-    background-color: #ffd998;
+    background-color: var(--solsikkegul-mork);
     z-index: 0;
   }
 
@@ -123,14 +110,8 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     margin-top: 2rem;
   }
 
-  .fakta h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
   .fakta p {
     font-size: 0.9rem;
-    line-height: 1.6;
     margin-bottom: 0.5rem;
   }
 
@@ -147,8 +128,6 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     align-items: center;
     gap: 0.5rem;
     margin: 1rem 1rem 3rem;
-    color: var(--sort);
-    text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
   }
@@ -157,59 +136,66 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     height: 100px;
   }
 
+  @media (min-width: 600px) and (max-width: 1023px) {
+    .hero {
+      background-size: 45%;
+      background-position: -20px -10px;
+      padding: 2rem 1rem 5rem;
+    }
+  }
+
   @media (min-width: 1024px) {
-  .hero {
-    background-image: url("/images/collage/papirstykke-beige.png");
-    background-size: 40%;
-    background-position: -10px -30px;
-    padding: 2rem 0 1rem 0;
-  }
+    .side-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 2rem;
+      padding: 2rem;
+      align-items: start;
+    }
 
-  .brodtekst {
-    padding: 0;
-  }
+    .hero {
+      background-size: 45%;
+      background-position: -10px -10px;
+      padding: 2rem 0 1rem 0;
+    }
 
-  .side-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 2rem;
-    padding: 2rem;
-    align-items: start;
-  }
+    .brodtekst {
+      padding: 0;
+    }
 
-  .venstre {
-    grid-column: 1 / 2;
-    grid-row: 1;
-    padding-left: 1rem;
-    padding-top: 2rem;
-  }
+    .venstre {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      padding-left: 1rem;
+      padding-top: 2rem;
+    }
 
-  .hoejre {
-    grid-column: 2 / 3;
-    grid-row: 1 / 4;
-    display: flex;
-    flex-direction: column;
-  }
+    .hoejre {
+      grid-column: 2 / 3;
+      grid-row: 1 / 4;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .accordeon {
-    grid-column: 1 / 2;
-    grid-row: 2;
-  }
+    .accordeon {
+      grid-column: 1 / 2;
+      grid-row: 2;
+    }
 
-  .tilbage-knap {
-    grid-column: 1 / 2;
-    grid-row: 3;
-  }
+    .tilbage-knap {
+      grid-column: 1 / 2;
+      grid-row: 3;
+    }
 
-  .gul-firkant {
-    top: 100px;
-    right: -53px;
-  }
+    .gul-firkant {
+      top: 100px;
+      right: -53px;
+    }
 
-  .fakta {
-  background-size: 45%;
-  background-position: -20px -30px;
-}
-}
+    .fakta {
+      background-size: 45%;
+      background-position: -20px -30px;
+    }
+  }
 </style>

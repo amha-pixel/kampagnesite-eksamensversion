@@ -145,34 +145,45 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
   .prikker {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .prikker::-webkit-scrollbar {
+    display: none;
   }
 
   .prik {
-    width: 8px;
-    height: 8px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background-color: var(--solsikkegul-lys);
+    background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition:
       background-color 0.2s ease,
       transform 0.2s ease;
   }
 
-  .prik::before {
+  .prik::after {
     content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--solsikkegul-lys);
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
   }
 
-  .prik.aktiv {
+  .prik.aktiv::after {
     background-color: var(--solsikkegul-aktiv);
     transform: scale(1.3);
   }

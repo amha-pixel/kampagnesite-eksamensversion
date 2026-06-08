@@ -34,7 +34,7 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     <div class="hoejre">
       <section class="billede-sektion" aria-label="Billede af naturstedet">
         <div class="gul-firkant" aria-hidden="true"></div>
-        <img src={data.billede} alt={`Naturstedet ${data.titel}`} class="naturbillede" fetchpriority="high" />
+        <img src={data.billede} alt={`Naturstedet ${data.titel}`} class="naturbillede" fetchpriority="high" width="800" height="600" />
       </section>
 
       <section class="fakta" aria-label="Faktaboks">
@@ -96,6 +96,7 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
   .naturbillede {
     position: relative;
     width: 100%;
+    height: auto;
     aspect-ratio: 4/3;
     object-fit: cover;
     z-index: 1;

@@ -11,37 +11,29 @@ interface Props {
 const { overskrift, tekst1, citat, tekst2 } = Astro.props;
 ---
 
-<section class="citat-sektion">
+<section class="citat-sektion" aria-label="Citat og information om Dankort Øremærket">
   <div class="container">
     <div class="citat-kort">
-      <!-- Gult papir øverst til venstre -->
-      <img src="/images/collage/papir-gul.png" alt="" class="papir-gul" aria-hidden="true" />
+      <img src="/images/collage/papir-gul.png" alt="" class="papir-gul" aria-hidden="true" role="presentation" />
+      <img src="/images/collage/papirstykke-hvid.png" alt="" class="papirstykke-hvid" aria-hidden="true" role="presentation" />
 
-      <!-- Hvidt papirstykke i midten som baggrund -->
-      <img src="/images/collage/papirstykke-hvid.png" alt="" class="papirstykke-hvid" aria-hidden="true" />
-
-      <!-- Tekst ovenpå -->
       <div class="citat-indhold">
-        <p class="citat-overskrift">{overskrift}</p>
+        <h2 class="citat-overskrift">{overskrift}</h2>
         <p class="citat-tekst">{tekst1}</p>
         <p class="citat-tekst kursiv">{citat}</p>
         <p class="citat-tekst">{tekst2}</p>
       </div>
 
-      <!-- Hvidt papir nederst -->
-      <img src="/images/collage/papir-hvid.png" alt="" class="papir-hvid" aria-hidden="true" />
       <div class="knap-wrapper">
         <CtaKnap tekst="Sådan bestiller du Dankort" popupId="popup" />
       </div>
+
+      <img src="/images/collage/papir-hvid.png" alt="" class="papir-hvid" aria-hidden="true" role="presentation" />
     </div>
   </div>
 </section>
 
 <style>
-  /* =====================
-     MOBILE FIRST
-     ===================== */
-
   .citat-sektion {
     padding: 5rem 0 3rem;
     background-color: var(--hvid);
@@ -53,7 +45,6 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
     max-width: 400px;
   }
 
-  /* Gult papir — øverst til venstre */
   .papir-gul {
     position: absolute;
     top: 1rem;
@@ -61,9 +52,9 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
     width: 300px;
     height: auto;
     z-index: 1;
+    pointer-events: none;
   }
 
-  /* Hvidt papirstykke — bagved teksten */
   .papirstykke-hvid {
     position: absolute;
     top: 6rem;
@@ -71,9 +62,9 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
     width: 160%;
     height: auto;
     z-index: 0;
+    pointer-events: none;
   }
 
-  /* Tekst — øverst i stakken */
   .citat-indhold {
     position: relative;
     z-index: 2;
@@ -85,7 +76,6 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
 
   .citat-overskrift {
     font-size: 1.4rem;
-    font-weight: 800;
     line-height: 1.4;
   }
 
@@ -93,30 +83,23 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
     font-size: 0.9rem;
   }
 
-  .kursiv {
-    font-style: italic;
-  }
-
   .papir-hvid {
     position: relative;
     width: 110%;
     margin-left: -1rem;
-    margin-top: -14rem;
+    margin-top: -18rem;
     z-index: 1;
+    pointer-events: none;
   }
 
   .knap-wrapper {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    display: flex;
+    justify-content: center;
     z-index: 3;
-    white-space: nowrap;
+    margin-top: 0.5rem;
+    padding-bottom: 2rem;
   }
-
-  /* =====================
-     DESKTOP (1024px+)
-     ===================== */
 
   @media (min-width: 1024px) {
     .citat-sektion {
@@ -141,8 +124,8 @@ const { overskrift, tekst1, citat, tekst2 } = Astro.props;
 
     .papir-hvid {
       width: 300px;
-      margin-left: 60rem;
-      margin-top: -14rem;
+      margin-left: 58rem;
+      margin-top: -20rem;
     }
 
     .citat-indhold {

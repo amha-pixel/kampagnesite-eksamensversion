@@ -11,7 +11,7 @@
   --limegroen-lys: #a1eaac;
   --dankort-roed: #e21e27;
   --naturgroen: #6f9c76;
-  --naturgroen-mork: #4a7a52; 
+  --naturgroen-mork: #4a7a52;
 
   /* Gråtoner */
   --sort: #1e1e1e;
@@ -68,6 +68,28 @@ a {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+/* =====================
+   HJÆLPEKLASSER — tilgængelig i alle komponenter
+   ===================== */
+
+/* Kursiv hjælpeklasse — bruges bl.a. i CitatSektion */
+.kursiv {
+  font-style: italic;
+}
+
+/* Tastatur-fokus: synlig fokusring til alle interaktive elementer */
+/* WCAG 2.1 kræver synlig fokus-indikator (Success Criterion 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--solsikkegul-aktiv);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skjul fokusring ved muse-klik, men behold den ved tastatur */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 @media (min-width: 1024px) {

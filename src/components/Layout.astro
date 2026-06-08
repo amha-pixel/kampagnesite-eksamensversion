@@ -23,5 +23,18 @@ const { title, description } = Astro.props;
     </main>
     <Footer />
     <BestilPopup />
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("synlig");
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll(".slide-op, .slide-ned, .slide-venstre, .slide-hoejre").forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>

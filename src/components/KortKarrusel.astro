@@ -14,7 +14,7 @@ interface Props {
 const { overskrift, kort, karruselId, prikId } = Astro.props;
 ---
 
-<section class="kort-karrusel" aria-labelledby="kort-karrusel-titel">
+<section class="kort-karrusel slide-op" aria-labelledby="kort-karrusel-titel">
   <div class="container">
     <h2 id="kort-karrusel-titel" class="kort-karrusel-titel">{overskrift}</h2>
   </div>
@@ -101,6 +101,18 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
   .card.aaben .card-indre {
     transform: rotateY(180deg);
   }
+
+  @keyframes ryst {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-2deg); }
+  50%  { transform: rotate(2deg); }
+  75%  { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.card:hover {
+  animation: ryst 0.4s ease;
+}
 
   .forside,
   .bagside {

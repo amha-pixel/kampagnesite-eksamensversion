@@ -115,14 +115,30 @@ a {
   }
 }
 
-/* Respekter brugerens bevægelsespræferencer — WCAG 2.3.3 */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
+.slide-op,
+.slide-ned,
+.slide-venstre,
+.slide-hoejre {
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.slide-op {
+  transform: translateY(40px);
+}
+.slide-ned {
+  transform: translateY(-40px);
+}
+.slide-venstre {
+  transform: translateX(-40px);
+}
+.slide-hoejre {
+  transform: translateX(40px);
+}
+
+.synlig {
+  opacity: 1;
+  transform: translate(0);
 }

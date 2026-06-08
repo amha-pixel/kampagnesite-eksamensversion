@@ -45,7 +45,7 @@ const vaerdier = [
 
 {
   vaerdier.map((v, index) => (
-    <section class={`vaerdi-sektion ${index !== 0 ? "skjult" : ""}`} id={v.slug} aria-labelledby={`titel-${v.slug}`}>
+    <section class={`vaerdi-sektion slide-op ${index !== 0 ? "skjult" : ""}`} id={v.slug} aria-labelledby={`titel-${v.slug}`}>
       <div class="gul-blok">
         <h2 id={`titel-${v.slug}`}>{v.titel}</h2>
         {v.tekst.map((afsnit) => (

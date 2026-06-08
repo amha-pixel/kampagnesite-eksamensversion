@@ -2,7 +2,7 @@
 
 ---
 
-<section class="kort-sektion">
+<section class="kort-sektion slide-op" aria-label="Interaktivt kort over natursteder i Danmark">
   <div class="kort-header">
     <h2>Find donationer i nærheden af dig</h2>
     <p>Kortet viser alle de naturområder i Danmark, som Dankort Øremærket har støttet i samarbejde med Den Danske Naturfond.</p>
@@ -105,6 +105,8 @@
     border: 2px solid var(--solsikkegul-aktiv);
   }
 
+  
+
   .kort-container {
     position: relative;
     width: 100%;
@@ -137,21 +139,15 @@
     fill: var(--naturgroen-mork);
   }
 
-  .natursted-prik {
-    cursor: pointer;
-    transition:
-      opacity 0.3s ease,
-      r 0.2s ease;
-    pointer-events: all;
-  }
+.natursted-prik {
+  cursor: pointer;
+  transition: opacity 0.3s ease, r 0.2s ease;
+  pointer-events: all;
+}
 
-  .natursted-prik:hover {
-    r: 14;
-  }
-
-  .natursted-prik.skjult {
-    display: none;
-  }
+.natursted-prik.skjult {
+  display: none;
+}
 
   :global(.tooltip) {
     position: fixed;
@@ -264,6 +260,14 @@
         e.stopPropagation();
         window.location.href = `/natursted/${sted.slug}`;
       });
+
+      cirkel.addEventListener("mouseenter", () => {
+  cirkel.setAttribute("r", "14");
+});
+
+cirkel.addEventListener("mouseleave", () => {
+  cirkel.setAttribute("r", "10");
+});
 
       prikkerGruppe.appendChild(cirkel);
     });

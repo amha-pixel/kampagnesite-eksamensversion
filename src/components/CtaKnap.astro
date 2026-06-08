@@ -56,4 +56,21 @@ const { tekst, href, type = "button", popupId, id, rel, target } = Astro.props;
     text-decoration: none;
     text-align: center;
   }
+
+  @keyframes puls {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.cta-knap {
+  /* din eksisterende styling + */
+  animation: puls 2s ease-in-out infinite;
+}
+
+.cta-knap:hover {
+  animation: none;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
 </style>

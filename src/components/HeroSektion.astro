@@ -4,12 +4,17 @@
 
 <section class="hero">
   <div class="video-wrapper">
-    <video autoplay muted loop playsinline preload="none" id="hero-video-mobil" class="hero-video mobil-video" aria-label="AI-genereret baggrundsvideo med brandambassador til koncert og i dansk natur">
-      <source src="/video/hero-mobil.mp4" type="video/mp4" />
-      <track kind="captions" src="/video/tom.vtt" srclang="da" label="Dansk" default />
-    </video>
-
-    <video autoplay muted loop playsinline preload="none" id="hero-video-desktop" class="hero-video desktop-video" aria-label="AI-genereret baggrundsvideo med brandambassador til koncert og i dansk natur">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/images/poster.webp"
+      id="hero-video"
+      class="hero-video"
+      aria-label="AI-genereret baggrundsvideo med brandambassador til koncert og i dansk natur"
+    >
       <source src="/video/hero-desktop.mp4" type="video/mp4" />
       <track kind="captions" src="/video/tom.vtt" srclang="da" label="Dansk" default />
     </video>
@@ -28,9 +33,7 @@
           <path d="m616-320-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm-496-40v-240h160l200-200v640L280-360H120Zm280-246-86 86H200v80h114l86 86v-252ZM300-480Z"></path>
         </svg>
         <svg id="ikon-lyd" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="currentColor" aria-hidden="true" style="display:none;">
-          <path
-            d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"
-          ></path>
+          <path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"></path>
         </svg>
       </button>
     </div>
@@ -69,13 +72,6 @@
     outline: none;
   }
 
-  .mobil-video {
-    display: block;
-  }
-  .desktop-video {
-    display: none;
-  }
-
   .video-kontroller {
     position: absolute;
     bottom: 1.5rem;
@@ -108,13 +104,6 @@
   }
 
   @media (min-width: 1024px) {
-    .mobil-video {
-      display: none;
-    }
-    .desktop-video {
-      display: block;
-    }
-
     .video-wrapper {
       height: auto;
       aspect-ratio: 16/9;
@@ -123,36 +112,14 @@
 </style>
 
 <script>
-  const mobilVideo = document.getElementById("hero-video-mobil") as HTMLVideoElement;
-  const desktopVideo = document.getElementById("hero-video-desktop") as HTMLVideoElement;
-
-  function skiftVideo() {
-    const erDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    if (erDesktop) {
-      mobilVideo.pause();
-      desktopVideo.play().catch(() => {});
-    } else {
-      desktopVideo.pause();
-      mobilVideo.play().catch(() => {});
-    }
-  }
-
-  function getAktivVideo(): HTMLVideoElement {
-    const erDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    return erDesktop ? desktopVideo : mobilVideo;
-  }
-
+  const video = document.getElementById("hero-video") as HTMLVideoElement;
   const playKnap = document.getElementById("play-pause");
   const ikon = document.getElementById("ikon");
   const lydKnap = document.getElementById("lyd-knap");
   const ikonMuted = document.getElementById("ikon-muted");
   const ikonLyd = document.getElementById("ikon-lyd");
 
-  window.addEventListener("resize", skiftVideo);
-  skiftVideo();
-
   playKnap?.addEventListener("click", () => {
-    const video = getAktivVideo();
     if (video.paused) {
       video.play();
       if (ikon) ikon.textContent = "⏸";
@@ -165,7 +132,6 @@
   });
 
   lydKnap?.addEventListener("click", () => {
-    const video = getAktivVideo();
     if (video.muted) {
       video.muted = false;
       ikonMuted!.style.display = "none";

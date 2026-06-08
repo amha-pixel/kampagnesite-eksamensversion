@@ -128,11 +128,29 @@
 </style>
 
 <script>
-  const knap = document.querySelector<HTMLButtonElement>(".menu-knap");
-  const menu = document.getElementById("menu");
+  document.addEventListener("DOMContentLoaded", () => {
+    const knap = document.querySelector<HTMLButtonElement>(".menu-knap");
+    const menu = document.getElementById("menu");
 
-  knap?.addEventListener("click", () => {
-    const erAaben = menu?.classList.toggle("aaben");
-    knap.setAttribute("aria-expanded", erAaben ? "true" : "false");
+    menu?.classList.remove("aaben");
+    knap?.setAttribute("aria-expanded", "false");
+
+    knap?.addEventListener("click", () => {
+      const erAaben = menu?.classList.toggle("aaben");
+      knap.setAttribute("aria-expanded", erAaben ? "true" : "false");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!(e.target as HTMLElement)?.closest("header")) {
+        menu?.classList.remove("aaben");
+        knap?.setAttribute("aria-expanded", "false");
+      }
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) {
+        menu?.classList.remove("aaben");
+        knap?.setAttribute("aria-expanded", "false");
+      }
+    });
   });
 </script>

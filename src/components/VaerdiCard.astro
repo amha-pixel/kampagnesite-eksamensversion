@@ -1,15 +1,23 @@
 ---
-const { billede, overskrift, underoverskrift, href } = Astro.props;
+interface Props {
+  billede: string;
+  billedeAlt: string;
+  overskrift: string;
+  underoverskrift: string;
+  href: string;
+}
+
+const { billede, billedeAlt, overskrift, underoverskrift, href } = Astro.props;
 ---
 
-<a href={href} class="kort">
-  <img src={billede} alt={overskrift} class="kort-billede" />
+<a href={href} class="kort" aria-label={`Læs mere om ${overskrift} — ${underoverskrift}`}>
+  <img src={billede} alt={billedeAlt} class="kort-billede" />
   <div class="kort-tekst">
     <div class="logo-og-titel">
-      <img src="/images/ui/dankort-logo.svg" alt="Dankort" class="kort-logo" />
-      <p class="kort-overskrift">{overskrift}</p>
+      <img src="/images/ui/dankort-logo.svg" alt="" class="kort-logo" aria-hidden="true" role="presentation" />
+      <p class="kort-overskrift" aria-hidden="true">{overskrift}</p>
     </div>
-    <p class="kort-underoverskrift">{underoverskrift}</p>
+    <p class="kort-underoverskrift" aria-hidden="true">{underoverskrift}</p>
   </div>
 </a>
 
@@ -68,17 +76,4 @@ const { billede, overskrift, underoverskrift, href } = Astro.props;
     color: var(--sort);
     padding-left: 32px;
   }
-
-  @media (min-width: 1024px) {
-  .karrusel-sektion {
-    padding: 2rem;
-  }
-
-  .karrusel {
-    overflow-x: visible;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-}
 </style>

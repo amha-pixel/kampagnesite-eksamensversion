@@ -2,166 +2,163 @@
 import CtaKnap from "./CtaKnap.astro";
 ---
 
-<section class="samarbejde">
+<section class="samarbejde" aria-labelledby="samarbejde-titel">
   <div class="indhold">
-    <img src="/images/collage/papirstykke-beige.png" alt="" class="papir-beige" />
+    <img src="/images/collage/papirstykke-beige.png" alt="" class="papir-beige" aria-hidden="true" role="presentation" />
 
     <div class="tekst">
-      <h2>Samarbejdsaftale</h2>
-      <p>Den Danske Naturfond køber simpelthen jord og lader naturen gøre sit. Ingen fancy løsninger. Bare mere vild natur til alle. Dankort sender dem over 10 millioner kroner om året og du bidrog hver gang du betalte for aftensmaden.</p>
-      <p>Naturfonden beskytter og genopretter natur i hele Danmark. Pengene fra Dankort går ubeskåret til opkøb af naturområder — fra hede i Thy til kridtklipperne på Møn. Alle områder er åbne for alle.</p>
+      <h2 id="samarbejde-titel" class="samarbejde-titel">Samarbejdsaftale</h2>
+      <p class="samarbejde-tekst">
+        Den Danske Naturfond køber simpelthen jord og lader naturen gøre sit. Ingen fancy løsninger. Bare mere vild natur til alle. Dankort sender dem over 10 millioner kroner om året og du bidrog hver gang du betalte for aftensmaden.
+      </p>
+      <p class="samarbejde-tekst">Naturfonden beskytter og genopretter natur i hele Danmark. Pengene fra Dankort går ubeskåret til opkøb af naturområder — fra hede i Thy til kridtklipperne på Møn. Alle områder er åbne for alle.</p>
     </div>
 
-    <img src="/images/natursteder/natursted-vanloeb.png" alt="Vandløb" class="natur-billede" />
+    <img src="/images/natursteder/natursted-vanloeb.png" alt="AI-genereret billede af naturligt vandløb omgivet af grøn vegetation i dansk natur" class="natur-billede" loading="lazy" decoding="async" />
 
     <div class="sort-lag">
-      <img src="/images/collage/papirstykke-sort.png" alt="" class="papir-sort" />
+      <img src="/images/collage/papirstykke-sort.png" alt="" class="papir-sort" aria-hidden="true" role="presentation" loading="lazy" />
       <div class="knap-wrapper">
-        <CtaKnap href="https://naturfonden.dk/" tekst="Tjek dem ud" />
+        <CtaKnap href="https://naturfonden.dk/" tekst="Tjek dem ud" rel="noopener noreferrer" target="_blank" />
       </div>
     </div>
   </div>
+</section>
 
-  <style>
+<style>
+  .samarbejde {
+    position: relative;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .indhold {
+    position: relative;
+  }
+
+  .papir-beige {
+    position: absolute;
+    top: -70px;
+    left: -60px;
+    width: 90%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .samarbejde-titel {
+    position: relative;
+    z-index: 1;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .samarbejde-tekst {
+    position: relative;
+    z-index: 1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .natur-billede {
+    width: 100%;
+    display: block;
+    margin: 3rem 0 1.5rem;
+  }
+
+  .sort-lag {
+    position: relative;
+    margin-top: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .papir-sort {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .knap-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  @media (min-width: 500px) and (max-width: 1023px) {
+    .papir-beige {
+      display: none;
+    }
+
+    .samarbejde-titel {
+      margin-top: 1rem;
+    }
+  }
+  @media (min-width: 1024px) {
     .samarbejde {
-      position: relative;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
+      margin-top: 5rem;
+      padding: 3rem 0;
     }
 
     .indhold {
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+      align-items: start;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
     .papir-beige {
-      position: absolute;
-      top: -70px;
-      left: -60px;
-      width: 90%;
+      top: -50px;
+      right: 400px;
+      left: auto;
+      width: 30%;
       z-index: 0;
     }
 
-    h2 {
-      position: relative;
-      z-index: 1;
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
+    .tekst {
+      grid-column: 2 / 3;
+      grid-row: 1;
     }
 
-    p {
-      position: relative;
-      z-index: 1;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 0.75rem;
+    .samarbejde-titel {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .samarbejde-tekst {
+      font-size: 1rem;
     }
 
     .natur-billede {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
       width: 100%;
-      display: block;
-      margin: 1.5rem 0;
-      margin-top: 3rem;
+      height: 450px;
+      object-fit: cover;
+      margin: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .sort-lag {
-      position: relative;
-      margin-top: 1rem;
-      margin-left: -1rem;
-      margin-right: -1rem;
-    }
-
-    .papir-sort {
-      display: block;
-      width: 100%;
+      grid-column: 2 / 3;
+      grid-row: 2;
+      margin-top: 5rem;
+      margin-left: -80px;
       position: relative;
       z-index: 0;
     }
 
     .knap-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 2rem;
-      transform: translateY(-50%);
-      z-index: 1;
+      top: 40%;
+      left: 5rem;
     }
-
-    @media (min-width: 500px) and (max-width: 1023px) {
-      .papir-beige {
-        display: none;
-      }
-
-      h2 {
-        margin-top: 1rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .knap-wrapper {
-        top: 40%;
-        left: 5rem;
-      }
-
-      .samarbejde {
-        margin-top: 5rem;
-        padding: 3rem 0;
-      }
-
-      .indhold {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 3rem;
-        align-items: start;
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      .papir-beige {
-        top: -50px;
-        right: 400px;
-        left: auto;
-        width: 30%;
-        z-index: 0;
-      }
-
-      .tekst {
-        grid-column: 2 / 3;
-        grid-row: 1;
-      }
-
-      .tekst h2 {
-        font-size: 2.2rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .tekst p {
-        font-size: 1rem;
-      }
-
-      .natur-billede {
-        grid-column: 1 / 2;
-        grid-row: 1 / 3;
-        width: 100%;
-        height: 450px;
-        object-fit: cover;
-        margin: 0;
-        position: relative;
-        z-index: 1;
-      }
-
-      .sort-lag {
-        grid-column: 2 / 3;
-        grid-row: 2;
-        margin-top: 5rem;
-        margin-left: -80px;
-        position: relative;
-        z-index: 0;
-      }
-
-      .cta-knap {
-        top: 40%;
-        left: 5rem;
-      }
-    }
-  </style>
-</section>
+  }
+</style>

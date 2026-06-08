@@ -92,6 +92,16 @@ a {
   outline: none;
 }
 
+.fremhaevet {
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.stor-tekst {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
 @media (min-width: 1024px) {
   .container {
     padding: 0 2rem;

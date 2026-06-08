@@ -2,15 +2,18 @@
 import CtaKnap from "./CtaKnap.astro";
 ---
 
-<section class="hvad-er">
+<section class="hvad-er" aria-labelledby="hvad-er-titel">
   <div class="container">
-    <h2>Hvad er Dankort <span class="display">Øremærket?</span></h2>
+    <h2 id="hvad-er-titel">
+      Hvad er Dankort <span class="display">Øremærket?</span>
+    </h2>
 
     <div class="indhold-grid">
       <div class="billede-wrapper">
-        <img src="/images/natursteder/natursted-moens-klint.webp" alt="Møns Klint" class="klint-billede" />
-        <img src="/images/natursteder/danmarkskort.png" alt="Danmarkskort" class="danmarkskort" />
+        <img src="/images/natursteder/natursted-moens-klint.webp" alt="Møns Klint — en af de naturområder Den Danske Naturfond arbejder for at bevare" class="klint-billede" loading="lazy" decoding="async" />
+        <img src="/images/natursteder/danmarkskort.png" alt="Kort over Danmark med punkter for natursteder" class="danmarkskort" loading="lazy" decoding="async" />
       </div>
+
       <div class="tekstboks">
         <p class="fremhaevet">Okay, det her er faktisk ret simpelt.</p>
         <p>Hver gang du betaler med dit Dankort, donerer Dankort selv 1 øre til Den Danske Naturfond. Du behøver ikke gøre noget, tilmelde dig noget eller betale ekstra. Det sker bare, hver gang du betaler med dit Dankort.</p>
@@ -31,30 +34,20 @@ import CtaKnap from "./CtaKnap.astro";
     margin-top: 2rem;
   }
 
-  h2 {
+  .hvad-er-titel {
     font-size: 1.8rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
   }
 
   .tekstboks {
-    align-items: flex-start;
     background-color: var(--hvid);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.75rem;
-  }
-
-  .fremhaevet {
-    font-weight: 800;
-    font-size: 0.95rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-    line-height: 1.6;
   }
 
   .billede-wrapper {
@@ -73,37 +66,12 @@ import CtaKnap from "./CtaKnap.astro";
     right: 0;
     width: 40%;
   }
-
-  .donation-tekst {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .stor-tekst {
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  .tekstboks p {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
   @media (min-width: 1024px) {
     .hvad-er {
       padding: 3rem 0;
     }
 
-    .hvad-er .container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    h2 {
+    .hvad-er-titel {
       font-size: 2.5rem;
       margin-bottom: 2rem;
     }
@@ -118,13 +86,10 @@ import CtaKnap from "./CtaKnap.astro";
     .billede-wrapper {
       grid-column: 2 / 3;
       grid-row: 1 / 3;
-      order: 2;
     }
 
     .tekstboks {
       grid-column: 1 / 2;
-      order: 1;
-      align-items: flex-start;
     }
   }
 </style>

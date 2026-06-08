@@ -14,9 +14,9 @@ interface Props {
 const { overskrift, kort, karruselId, prikId } = Astro.props;
 ---
 
-<section class="kort-karrusel">
+<section class="kort-karrusel" aria-labelledby="kort-karrusel-titel">
   <div class="container">
-    <h2>{overskrift}</h2>
+    <h2 id="kort-karrusel-titel" class="kort-karrusel-titel">{overskrift}</h2>
   </div>
 
   <div class="karrusel-wrapper">
@@ -24,7 +24,7 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
       <div class="karrusel" id={karruselId}>
         {
           kort.map((item, i) => (
-            <div class="card" data-index={i}>
+            <div class="card" data-index={i} role="button" tabindex="0" aria-label={`Kort ${i + 1}: ${item.forside}. Klik for at vende.`}>
               <div class="card-indre">
                 <div class="forside">
                   <p>{item.forside}</p>
@@ -55,11 +55,11 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
     margin-bottom: 8rem;
   }
 
-  h2 {
+  .kort-karrusel-titel {
     font-size: 1.8rem;
-    font-weight: 800;
     text-align: left;
     margin-bottom: 2rem;
+    /* font-weight: 800 arves fra global.css */
   }
 
   .karrusel-wrapper {
@@ -156,9 +156,20 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
     border: none;
     cursor: pointer;
     padding: 0;
+    position: relative;
     transition:
       background-color 0.2s ease,
       transform 0.2s ease;
+  }
+
+  .prik::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
   }
 
   .prik.aktiv {
@@ -175,7 +186,7 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
       margin-top: 5rem;
     }
 
-    h2 {
+    .kort-karrusel-titel {
       font-size: 2.2rem;
     }
 
@@ -192,14 +203,14 @@ const { overskrift, kort, karruselId, prikId } = Astro.props;
       background: transparent;
       border: 2px solid var(--solsikkegul-aktiv);
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
 
     .pil:hover {
-        background: transparent;
+      background: transparent;
     }
 
     .venstre::after {

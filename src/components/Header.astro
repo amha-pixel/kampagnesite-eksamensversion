@@ -2,15 +2,37 @@
 
 ---
 
-<header>
-  <a href="/" class="logo">
+<header role="banner">
+  <a href="/" class="logo" aria-label="Gå til forsiden">
     <img src="/images/ui/dankort-logo.svg" alt="Dankort logo" />
   </a>
-  <span class="titel"><strong class="dankort-navn">Dankort</strong> Øremærket</span>
-  <nav class="menu" id="menu">
-    <a href="/">Hvad er Øremærket?</a>
+  <span class="titel" aria-hidden="true"><strong class="dankort-navn">Dankort</strong> Øremærket</span>
+  <button class="menu-knap-desktop" aria-expanded="false" aria-controls="desktop-menu">
+    Menu
+    <svg class="pil pil-ned" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <path d="M480-360 280-560h400L480-360Z"></path>
+    </svg>
+    <svg class="pil pil-op" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <path d="m280-400 200-200 200 200H280Z"></path>
+    </svg>
+  </button>
+
+  <div class="desktop-menu" id="desktop-menu" role="navigation" aria-label="Desktopnavigation">
     <a href="/overblik" class="naturgroen-link">Danmarkskortet</a>
+    <a href="/#hvad-er">Hvad er Dankort Øremærket?</a>
+    <a href="/overblik#vaerdier">Øremærkets værdier</a>
+    <a href="/overblik#fordele">Fordele ved Dankort</a>
+    <a href="/#faq">Ofte stillede spørgsmål</a>
+  </div>
+
+  <nav class="menu" id="menu" aria-label="Mobilnavigation">
+    <a href="/overblik" class="naturgroen-link">Danmarkskortet</a>
+    <a href="/#hvad-er">Hvad er Dankort Øremærket?</a>
+    <a href="/overblik#vaerdier">Øremærkets værdier</a>
+    <a href="/overblik#fordele">Fordele ved Dankort</a>
+    <a href="/#faq">Ofte stillede spørgsmål</a>
   </nav>
+
   <button class="menu-knap" aria-label="Åbn menu" aria-expanded="false">
     <span></span>
     <span></span>
@@ -60,7 +82,6 @@
   .menu {
     display: none;
     flex-direction: column;
-    background-color: var(--solsikkegul-lys);
     padding: 1rem;
     gap: 0.75rem;
   }
@@ -72,14 +93,16 @@
     left: 0;
     right: 0;
     z-index: 10;
+    background-color: rgba(255, 232, 182, 0.8);
+    backdrop-filter: blur(4px);
   }
 
   .menu a {
     color: var(--sort);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 0.5rem 0;
+    padding: 0.1rem 0;
   }
 
   .menu a:last-child {
@@ -93,23 +116,24 @@
   .dankort-navn {
     font-family: var(--font-body);
     font-weight: 800;
+    display: none;
   }
 
-  .dankort-navn {
-    font-family: var(--font-body);
-    font-weight: 800;
-    display: none; /* ← skjul på mobil */
+  .menu-knap-desktop {
+    display: none;
   }
 
-  @media (min-width: 1024px) {
-    .dankort-navn {
-      display: inline; /* ← vis på desktop */
-    }
+  .desktop-menu {
+    display: none;
   }
 
   @media (min-width: 1024px) {
     header {
       padding: 0.75rem 2rem;
+    }
+
+    .dankort-navn {
+      display: inline;
     }
 
     .titel {
@@ -121,27 +145,82 @@
     }
 
     .menu {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background-color: transparent;
-      padding: 0;
-      gap: 2rem;
-      position: static;
+      display: none;
     }
 
     .menu-knap {
       display: none;
     }
 
-    .menu a:first-child {
+    .menu-knap-desktop {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(161, 234, 172, 0.4);
+      border: 2px solid var(--limegroen-mork);
+      color: var(--sort);
+      padding: 0.6rem 1.25rem;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .pil {
+      color: var(--limegroen-mork);
+    }
+
+    .pil-ned {
+      display: block;
+    }
+    .pil-op {
       display: none;
+    }
+
+    .menu-knap-desktop.aaben .pil-ned {
+      display: none;
+    }
+    .menu-knap-desktop.aaben .pil-op {
+      display: block;
+    }
+
+    .desktop-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 2rem;
+      background-color: rgba(255, 232, 182, 0.8);
+      backdrop-filter: blur(4px);
+      border-radius: 1rem;
+      padding: 1rem;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 10;
+      min-width: 220px;
+    }
+
+    .desktop-menu.aaben {
+      display: flex;
+    }
+
+    .desktop-menu a {
+      color: var(--sort);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      text-decoration: none;
+    }
+
+    .desktop-menu a.naturgroen-link {
+      color: var(--naturgroen);
     }
   }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Mobil menu
     const knap = document.querySelector<HTMLButtonElement>(".menu-knap");
     const menu = document.getElementById("menu");
 
@@ -151,18 +230,54 @@
     knap?.addEventListener("click", () => {
       const erAaben = menu?.classList.toggle("aaben");
       knap.setAttribute("aria-expanded", erAaben ? "true" : "false");
+      knap.setAttribute("aria-label", erAaben ? "Luk menu" : "Åbn menu");
     });
 
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu?.classList.remove("aaben");
+        knap?.setAttribute("aria-expanded", "false");
+        knap?.setAttribute("aria-label", "Åbn menu");
+      });
+    });
+
+    // Desktop menu
+    const desktopKnap = document.querySelector<HTMLButtonElement>(".menu-knap-desktop");
+    const desktopMenu = document.getElementById("desktop-menu");
+
+    desktopKnap?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const erAaben = desktopMenu?.classList.toggle("aaben");
+      desktopKnap.classList.toggle("aaben", erAaben);
+      desktopKnap.setAttribute("aria-expanded", erAaben ? "true" : "false");
+    });
+
+    desktopMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        desktopMenu?.classList.remove("aaben");
+        desktopKnap?.classList.remove("aaben");
+        desktopKnap?.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Luk begge menuer ved klik udenfor header
     document.addEventListener("click", (e) => {
       if (!(e.target as HTMLElement)?.closest("header")) {
         menu?.classList.remove("aaben");
         knap?.setAttribute("aria-expanded", "false");
+        knap?.setAttribute("aria-label", "Åbn menu");
+        desktopMenu?.classList.remove("aaben");
+        desktopKnap?.classList.remove("aaben");
+        desktopKnap?.setAttribute("aria-expanded", "false");
       }
     });
+
+    // Luk ved resize til desktop
     window.addEventListener("resize", () => {
       if (window.innerWidth >= 1024) {
         menu?.classList.remove("aaben");
         knap?.setAttribute("aria-expanded", "false");
+        knap?.setAttribute("aria-label", "Åbn menu");
       }
     });
   });

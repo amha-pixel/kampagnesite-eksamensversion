@@ -158,4 +158,31 @@ a {
     transform: none;
     transition: none;
   }
+
+  .bounce-ind {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.bounce-ind {
+  display: inline-block;
+  animation: bounceIn 0.8s ease forwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

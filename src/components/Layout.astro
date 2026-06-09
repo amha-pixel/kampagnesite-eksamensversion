@@ -35,6 +35,20 @@ const { title, description } = Astro.props;
       document.querySelectorAll(".slide-op, .slide-ned, .slide-venstre, .slide-hoejre").forEach((el) => {
         observer.observe(el);
       });
+
+        // Separat observer til .display bounce
+  const bounceObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("bounce-ind");
+        bounceObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll(".display").forEach((el) => {
+    bounceObserver.observe(el);
+  });
     </script>
   </body>
 </html>

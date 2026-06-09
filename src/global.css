@@ -28,10 +28,15 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-body);
   color: var(--sort);
   background-color: var(--hvid);
+  overflow-x: hidden;
 }
 
 /* Typografi samlet */
@@ -141,4 +146,15 @@ a {
 .synlig {
   opacity: 1;
   transform: translate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-op,
+  .slide-ned,
+  .slide-venstre,
+  .slide-hoejre {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

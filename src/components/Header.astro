@@ -35,7 +35,8 @@
 
   .titel {
     font-family: var(--font-display);
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    margin-right: auto;
   }
 
   .menu-knap {
@@ -92,6 +93,18 @@
   .dankort-navn {
     font-family: var(--font-body);
     font-weight: 800;
+  }
+
+  .dankort-navn {
+    font-family: var(--font-body);
+    font-weight: 800;
+    display: none; /* ← skjul på mobil */
+  }
+
+  @media (min-width: 1024px) {
+    .dankort-navn {
+      display: inline; /* ← vis på desktop */
+    }
   }
 
   @media (min-width: 1024px) {

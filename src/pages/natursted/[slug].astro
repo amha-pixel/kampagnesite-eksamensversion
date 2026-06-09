@@ -124,17 +124,34 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
     align-items: flex-start;
   }
 
+  .tilbage-knap img {
+    width: 200px;
+  }
+
   .tilbage-knap {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin: 1rem 1rem 3rem;
-    font-weight: 600;
-    font-size: 0.9rem;
+    animation: puls 4s ease-in-out infinite;
   }
 
-  .tilbage-knap img {
-    height: 100px;
+  .tilbage-knap:hover {
+    animation: none;
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+
+  @keyframes puls {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
@@ -157,7 +174,7 @@ const { data, error } = await supabase.from("natursteder").select("*").eq("slug"
 
     .hero {
       background-size: 45%;
-      background-position: -10px -10px;
+      background-position: -10px -16px;
       padding: 2rem 0 1rem 0;
     }
 

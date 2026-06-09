@@ -1,6 +1,7 @@
 ---
 // InfoSektion.astro
 ---
+
 <section class="info-sektion slide-venstre">
   <div class="info-kort">
     <img src="/images/collage/papir-sort.webp" alt="" class="papir--top" aria-hidden="true" />
@@ -18,7 +19,7 @@
 <style>
   .info-sektion {
     background-color: var(--hvid);
-    padding: 2rem 0 0.5rem;
+    padding: 2rem 0 2rem;
     display: flex;
     justify-content: flex-start;
   }
@@ -43,7 +44,7 @@
   .papir--bottom {
     position: absolute;
     bottom: -64px;
-    right: 9rem;
+    left: 9rem;
     width: 130px;
     height: auto;
     rotate: 27deg;
@@ -94,18 +95,18 @@
       right: -4rem;
       rotate: 3deg;
     }
-
-@media (min-width: 1600px) {
-  .info-sektion {
-    justify-content: center;
   }
+  @media (min-width: 1600px) {
+    .info-sektion {
+      justify-content: center;
+    }
 
-  .info-kort {
-    width: 100%;
-    max-width: 1440px;
-    padding: 1.5rem 1rem;
-    margin: 0 auto 1rem;
-    text-align: left;
+    .info-kort {
+      width: 100%;
+      max-width: 1440px;
+      padding: 1.5rem 1rem;
+      margin: 0 auto 1rem;
+      text-align: left;
+    }
   }
-}
 </style>
